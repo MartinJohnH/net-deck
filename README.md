@@ -1,4 +1,4 @@
-# N.E.T DECK (New Era Tarot Deck)
+# N.E.T. DECK (New Era Tarot Deck)
 
 Project description goes here
 
@@ -45,5 +45,5 @@ A step by step guide that tells you how to get a development env running
 ## Authors
 
 * **Martin-John Hearty** - [website](https://martinjohnhearty.com)
-* **Jonathan** - [website](https://github.com/)
+* **Jonathan Ganz** - [website](https://github.com/)
 

@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `N.E.T DECK`,
+    title: `N.E.T. DECK`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    author: `Martin-John Hearty & Jonathan Ganz`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -18,12 +18,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `N.E.T DECK`,
-        short_name: `N.E.T DECK`,
+        name: `N.E.T. DECK`,
+        short_name: `N.E.T. DECK`,
         start_url: `/`,
         background_color: `#000000`,
-        theme_color: `#a1a1a1`,
-        display: `minimal-ui`,
+        theme_color: `#ADADAD`,
+        display: `fullscreen`,
         icon: `src/assets/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },

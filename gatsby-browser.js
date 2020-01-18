@@ -4,4 +4,4 @@
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
 
-//require('./src/css/imports.scss')
+require('./src/css/imports.scss')
