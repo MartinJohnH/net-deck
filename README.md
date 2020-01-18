@@ -45,5 +45,5 @@ A step by step guide that tells you how to get a development env running
 ## Authors
 
 * **Martin-John Hearty** - [website](https://martinjohnhearty.com)
-* **Johnathan** - [website](https://github.com/)
+* **Jonathan** - [website](https://github.com/)
 
