@@ -1,0 +1,9 @@
+html {
+  @media only screen and (min-width: $sm-viewport) {
+    font-size: 18px;
+  }
+}
+
+.main-wrapper {
+  margin: 20px;
+}

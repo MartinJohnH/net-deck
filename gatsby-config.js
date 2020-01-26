@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `N.E.T. DECK`,
+    title: `NET DECK`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `Martin-John Hearty & Jonathan Ganz`,
   },
@@ -18,8 +18,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `N.E.T. DECK`,
-        short_name: `N.E.T. DECK`,
+        name: `NET DECK`,
+        short_name: `NET DECK`,
         start_url: `/`,
         background_color: `#000000`,
         theme_color: `#ADADAD`,
@@ -30,6 +30,7 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-remove-trailing-slashes`,
+    'gatsby-plugin-eslint',
     {
       resolve: `gatsby-plugin-purgecss`,
       options: {

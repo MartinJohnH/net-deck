@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  opacity: 0;
+  animation: fade-in 0.25s 2.5s 1 ease-in forwards;
+
+  .header--title {
+    color: $grey-light;
+    font-size: 0.75rem;
+    font-weight: lighter;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .info-button {
+    background-color: $grey-dark;
+    border-radius: 100%;
+    cursor: pointer;
+    height: 15px;
+    position: relative;
+    width: 15px;
+
+    span {
+      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+      font-size: 0.688rem;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%,-50%);
+    }
+  }
+}

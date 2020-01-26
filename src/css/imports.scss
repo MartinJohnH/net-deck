@@ -2,7 +2,9 @@
 @import "base/variables";
 
 //modules
+@import "modules/header";
+@import "modules/intro_title";
+@import "modules/deck";
 
 //views
-@import "views/start_page";
 @import "views/game_page";

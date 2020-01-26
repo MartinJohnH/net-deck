@@ -1,0 +1,84 @@
+.intro-title {
+  color: $grey-light;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -150%);
+  width: 100%;
+  z-index: 10;
+
+  span {
+    font-family: 'Darker Grotesque', sans-serif;
+    font-size: 2rem;
+    position: relative;
+    display: inline-block;
+    height: 100%;
+  }
+}
+
+.title-word {
+  overflow: hidden;
+  animation: fade-in 0.25s 0s 1 ease-in forwards;
+}
+
+.removed-title1 {
+  animation: intro-animation1 0.5s 2s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+  margin: 0 10px 0 0;
+  opacity: 1;
+  @keyframes intro-animation1 {
+    from { opacity: 1; margin: 0 0.625rem 0 0; }
+    to { opacity: 0; margin: 0 0.375rem 0 -2.65rem; }
+  }
+}
+.removed-title2 {
+  animation: intro-animation2 0.5s 2s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+  margin: 0 10px 0 0;
+  opacity: 1;
+
+  @keyframes intro-animation2 {
+    from { opacity: 1; margin: 0 0.625rem 0 0; }
+    to { opacity: 0; margin: 0 0.375rem 0 -1.975rem; }
+  }
+}
+
+.removed-title3 {
+  animation: intro-animation3 0.5s 2s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+  margin: 0 10px 0 0;
+  opacity: 1;
+
+  @keyframes intro-animation3 {
+    from { opacity: 1; margin: 0 0.625rem 0 0; }
+    to { opacity: 0; margin: 0 0.9rem 0 -3.625rem; }
+  }
+}
+
+.abv-title {
+  background-color: black;
+  display: inline-block;
+  z-index: 10;
+  animation: colour-fade 0.45s 2s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+
+  @keyframes colour-fade {
+    0% {
+      background-color: black;
+    }
+    80% {
+      background-color: black;
+    }
+    100% {
+      background-color: transparent;
+    }
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,64 @@
+.deck {
+  animation: zoom-in 0.75s 2.5s 1 cubic-bezier(.47,0,.74,.71) forwards;
+  background-color: #777777;
+  border: 1px $grey-light solid;
+  border-radius: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
+  height: 565px;
+  width: 325px;
+
+  .button--deal-cards {
+    border: 1px $grey-light solid;
+    border-radius: 10px;
+    color: $grey-light;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    padding: 15px 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    transition: all .3s cubic-bezier(.45,.05,.55,.95);
+
+    &:hover {
+      animation: shockwave 3s cubic-bezier(.45,.05,.55,.95) infinite;
+      background-color: $grey-light;
+      color: #777777;
+    }
+  }
+
+}
+
+@keyframes zoom-in {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+  }
+  75% {
+    transform: translate(-50%, -50%) scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shockwave {
+  0% {
+    box-shadow: 0 0 2px $grey-light;
+  }
+
+  50% {
+    box-shadow: 0 0 30px darken($grey-light, 20%), inset 0 0 10px $grey-light;
+  }
+
+  100% {
+    box-shadow: 0 0 2px $grey-light;
+  }
+}
