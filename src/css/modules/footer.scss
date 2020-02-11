@@ -1,0 +1,95 @@
+@mixin footer-info() {
+  opacity: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: 1.25rem;
+  display: block;
+}
+
+.footer {
+  padding-bottom: 4vh;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 10%);
+  text-align: center;
+  width: 100%;
+
+  .card-UI {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .instruction {
+    @include footer-info();
+    animation: fade-in-text .3s 3.5s 1 ease-in forwards;
+    color: $grey-light;
+    transform: translateY(100%);
+  }
+
+  .play {
+    animation: fade-in .3s 2.5s 1 ease-in forwards;
+    cursor: pointer;
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(15%);
+    padding: 25px;
+
+    span {
+      display: block;
+      background: transparent;
+      box-sizing: border-box;
+      width: 0;
+      height: 15px;
+
+      border-color: transparent transparent transparent $grey;
+      transition: 100ms all ease-in-out;
+      cursor: pointer;
+
+      // play state
+      border-style: double;
+      border-width: 0 0 0 12px;
+
+      &.paused {
+        border-style: solid;
+        border-width: 7px 0 7px 12px;
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          border-color: transparent transparent transparent $grey-light;
+        }
+      }
+    }
+  }
+
+
+  .next {
+    @include footer-info();
+    animation: fade-in .3s 2.5s 1 ease-in forwards;
+    color: $grey;
+    cursor: pointer;
+    transform: translateY(10%);
+    display: inline-block;
+    padding: 25px;
+    transition: color .3s ease-in-out;
+
+    @media (hover: hover) {
+      &:hover {
+        color: $grey-light;
+        transition: color .3s ease-in-out;
+      }
+    }
+  }
+}
+
+@keyframes fade-in-text {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(10%);
+  }
+}

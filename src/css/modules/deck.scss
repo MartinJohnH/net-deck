@@ -1,15 +1,50 @@
-.deck {
-  animation: zoom-in 0.75s 2.5s 1 cubic-bezier(.47,0,.74,.71) forwards;
+@mixin card($card_z-index, $opacity) {
+  background: -moz-linear-gradient(top, rgba(110,110,110,0) 0%, rgba(49,49,49,0) 50%, rgba(29,29,29,0.3) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(110,110,110,0) 0%,rgba(49,49,49,0) 50%,rgba(29,29,29,0.3) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(110,110,110,0) 0%,rgba(49,49,49,0) 50%,rgba(29,29,29,0.3) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   background-color: #777777;
   border: 1px $grey-light solid;
   border-radius: 15px;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#006e6e6e', endColorstr='#801d1d1d',GradientType=0 ); /* IE6-9 */
+  height: 80%;
+  left: 50%;
+  max-height: 565px;
+  opacity: $opacity;
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.5);
-  opacity: 0;
-  height: 565px;
-  width: 325px;
+  transform: translate(-50%, -50%) scale(0.3) rotateY(0deg);
+  width: 285px;
+  z-index: $card_z-index;
+
+  @media only screen and (min-width: 360px) {
+    width: 325px;
+  }
+}
+
+@mixin deal-cards($name, $offset, $delay) {
+  animation: #{$name} 1.5s #{$delay}s 1 cubic-bezier(.47,0,.74,.71) forwards;
+  @keyframes #{$name} {
+    0% {
+      transform: translate(-50%, -50%) scale(0.3);
+      opacity: 1;
+    }
+
+    50% {
+      transform: translate(#{$offset}, -50%) scale(0.33);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translate(#{$offset}, -50%) scale(0.26);
+      opacity: 1;
+    }
+  }
+}
+
+.card1 {
+  animation: zoom-in 0.75s 2.5s 1 cubic-bezier(.47,0,.74,.71) forwards;
+  @include card(30, 0);
+  cursor: default;
 
   .button--deal-cards {
     border: 1px $grey-light solid;
@@ -23,23 +58,74 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, 0%);
-    transition: all .3s cubic-bezier(.45,.05,.55,.95);
+    transition: all .3s ease-in-out;
 
-    &:hover {
-      animation: shockwave 3s cubic-bezier(.45,.05,.55,.95) infinite;
-      background-color: $grey-light;
-      color: #777777;
+    @media (hover: hover) {
+      &:hover {
+        //animation: shockwave 3s cubic-bezier(.45,.05,.55,.95) infinite;
+        background-color: $grey-light;
+        color: #777777;
+        transition: all .3s ease-in-out;
+      }
     }
   }
 
 }
+
+.card2 {
+  @include card(20, 1);
+  @include deal-cards(card2, -50%, 2);
+}
+
+.card3 {
+  @include card(10, 1);
+  @include deal-cards(card3, -15%, 2.5);
+}
+
+.animate--dealing {
+  cursor: default;
+  transition: all .3s ease-in-out;
+
+  @media (hover: hover) {
+    &:hover {
+      transition: all .3s ease-in-out;
+      filter: brightness(130%);
+    }
+  }
+  animation: deal-cards1  3s 0s 1 cubic-bezier(.47,0,.74,.71) forwards;
+  @keyframes deal-cards1 {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    30% {
+      transform: translate(-50%, -50%) scale(0.3);
+      opacity: 1;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(0.33);
+      opacity: 1;
+    }
+    75% {
+      transform: translate(-85%, -50%) scale(0.33);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-85%, -50%) scale(0.26);
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+}
+
+
 
 @keyframes zoom-in {
   0% {
     transform: translate(-50%, -50%) scale(0.5);
     opacity: 0;
   }
-  75% {
+  90% {
     transform: translate(-50%, -50%) scale(1.05);
     opacity: 1;
   }

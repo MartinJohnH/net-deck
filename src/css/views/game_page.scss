@@ -7,3 +7,23 @@ html {
 .main-wrapper {
   margin: 20px;
 }
+
+.background-image {
+  animation: fade-in 1s 0s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  z-index: 0;
+}
+
+.video-wrapper {
+  animation: fade-in 1s 3s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
