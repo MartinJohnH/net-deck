@@ -1,55 +1,55 @@
 .intro-title {
   color: $grey-light;
-  overflow: hidden;
   display: flex;
   justify-content: center;
+  left: 50%;
+  overflow: hidden;
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -150%);
   width: 100%;
   z-index: 40;
 
   span {
+    display: inline-block;
     font-family: 'Darker Grotesque', sans-serif;
     font-size: 2rem;
     position: relative;
-    display: inline-block;
     height: 100%;
   }
 }
 
 .title-word {
-  overflow: hidden;
-  opacity: 0;
   animation: fade-in 0.25s 0.2s 1 ease-in forwards;
+  opacity: 0;
+  overflow: hidden;
 }
 
 .removed-title1 {
   animation: intro-animation1 0.5s 2s 1 cubic-bezier(.45,.05,.55,.95) forwards;
   margin-left: 0;
-  padding-right: 10px;
   opacity: 1;
+  padding-right: 10px;
 }
 .removed-title2 {
   animation: intro-animation2 0.5s 2s 1 cubic-bezier(.45,.05,.55,.95) forwards;
   margin-left: 0;
-  padding-right: 10px;
   opacity: 1;
+  padding-right: 10px;
 }
 
 .removed-title3 {
   animation: intro-animation3 0.5s 2s 1 cubic-bezier(.45,.05,.55,.95) forwards;
   margin-left: 0;
-  padding-right: 10px;
   opacity: 1;
+  padding-right: 10px;
 }
 
 .abv-title {
+  animation: colour-fade 0.45s 2s 1 cubic-bezier(.45,.05,.55,.95) forwards;
   background-color: black;
   display: inline-block;
   z-index: 40;
-  animation: colour-fade 0.45s 2s 1 cubic-bezier(.45,.05,.55,.95) forwards;
 }
 
 @keyframes fade-in {
@@ -74,16 +74,38 @@
 }
 
 @keyframes intro-animation3 {
-  from { opacity: 1; margin-left: 0; }
-  to { opacity: 0; margin-left: -60px; }
+  from {
+    opacity: 1;
+    margin-left: 0;
+  }
+  to {
+    opacity: 0;
+    margin-left: -60px;
+  }
 }
 
 @keyframes intro-animation2 {
-  from { opacity: 1; margin-left: 0; padding-right: 10px; }
-  to { opacity: 0;  margin-left: -30px; padding-right: 0; }
+  from {
+    opacity: 1;
+    margin-left: 0;
+    padding-right: 10px;
+  }
+  to {
+    opacity: 0;
+    margin-left: -30px;
+    padding-right: 0;
+  }
 }
 
 @keyframes intro-animation1 {
-  from { opacity: 1; margin-left: 0; padding-right: 10px; }
-  to { opacity: 0; margin-left: -42px; padding-right: 0; }
+  from {
+    opacity: 1;
+    margin-left: 0;
+    padding-right: 10px;
+  }
+  to {
+    opacity: 0;
+    margin-left: -42px;
+    padding-right: 0;
+  }
 }

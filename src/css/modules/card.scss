@@ -1,16 +1,29 @@
 .card1.animate--dealing.reveal {
   animation: card-flip 2.5s 0s 1 cubic-bezier(.45,.05,.55,.95) forwards;
   transform: translate(-85%, -50%) translateZ(1000px) rotateY(0deg) scale(0.26);
+
   &:hover {
     filter: brightness(100%);
   }
 }
 
 @keyframes card-flip {
-  0% { opacity: 1; transform: translate(-85%, -50%) translateZ(1000px) rotateY(0deg) scale(0.26); }
-  15% { opacity: 1; transform: translate(-85%, -50%) translateZ(1000px) rotateY(0deg) scale(0.2); }
-  90% { opacity: 1; transform: translate(-50%, -50%) translateZ(1000px) rotateY(180deg) scale(1.05); }
-  100% { opacity: 1; transform: translate(-50%, -50%) translateZ(1000px) rotateY(180deg) scale(1); }
+  0% {
+    opacity: 1;
+    transform: translate(-85%, -50%) translateZ(1000px) rotateY(0deg) scale(0.26);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(-85%, -50%) translateZ(1000px) rotateY(0deg) scale(0.2);
+  }
+  90% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateZ(1000px) rotateY(180deg) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateZ(1000px) rotateY(180deg) scale(1);
+  }
 }
 
 .card-filter {
