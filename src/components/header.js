@@ -11,7 +11,7 @@ const Header = ({ siteTitle }) => {
   return (
     <header className="header">
       <a href="/">
-        <span className="header--title">{siteTitle}</span>
+        <h1 className="header--title">{siteTitle}</h1>
       </a>
       <div className="info-button noselect" onClick={handleInfoClick}>
         {!showInfoPage ? (
