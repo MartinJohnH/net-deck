@@ -19,9 +19,9 @@ const Footer = ({ areCardsDealt, cardsRevealed, cardsViewed, handleCardsViewed }
       ) : (
         cardsRevealed !== cardsViewed &&
         <div className="card-UI">
-          <span className={isPlaying ? "play" : "play recording"} onClick={handleControlClick}>
+          <span className={isPlaying ? "play" : "play"} onClick={handleControlClick}>
 
-            <span className={isPlaying ? "record" : "recording"}/>
+            <span className={isPlaying ? "" : "paused"}/>
           </span>
           <span className="next noselect" onClick={handleNextClick}>next</span>
         </div>

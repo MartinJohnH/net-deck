@@ -9,6 +9,9 @@
   bottom: 0;
   left: 50%;
   padding-bottom: 4vh;
+  @media all and (display-mode: fullscreen) {
+    padding-bottom: calc(1vh + env(safe-area-inset-bottom));
+  }
   position: absolute;
   text-align: center;
   transform: translate(-50%, 10%);
@@ -43,10 +46,10 @@
     }
 
     &:before {
-      border-color: $grey;
-      border-style: solid;
-      border-width: 2px;
-      border-radius: 100%;
+      //border-color: $grey;
+      //border-style: solid;
+      //border-width: 2px;
+      //border-radius: 100%;
       content: "";
       height: 32px;
       left: 15px;
