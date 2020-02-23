@@ -1,27 +1,45 @@
 import React, {useState} from "react"
 import Card1 from "./card1"
 import Footer from "./footer"
+import cardSVG from "../assets/back-card.svg"
 
 const Deck = ({ dealCards, areCardsDealt }) => {
-  const [isCardReveal1, setIsCardReveal1] = useState(false);
-  const [isCard1Done, setIsCard1Done] = useState(false);
+  const [cardsRevealed, setCardRevealed] = useState(0);
+  const [cardsViewed, setCardViews] = useState(0);
 
   function handleDealCardsButtonClick() {
     dealCards();
   }
 
-  function handleCard1Click() {
-    setIsCardReveal1(true);
+  function handleCardReveal() {
+    setCardRevealed(cardsRevealed + 1);
+  }
+
+  function handleCardsViewed() {
+    setCardViews(cardsViewed + 1);
   }
 
   return (
     <>
-      <Card1 dealCards={handleDealCardsButtonClick} areCardsDealt={areCardsDealt} handleCard1Reveal={handleCard1Click} isCardReveal1={isCardReveal1} />
-      <div className={areCardsDealt ? "card2" : undefined}>
+      <Card1
+        dealCards={handleDealCardsButtonClick}
+        areCardsDealt={areCardsDealt}
+        handleCardReveal={handleCardReveal}
+        cardsRevealed={cardsRevealed}
+        cardsViewed={cardsViewed}
+      />
+      <div className={areCardsDealt ? "card2" : "no-card"}>
+        <img className="back-face-card noselect" src={cardSVG}/>
       </div>
-      <div className={areCardsDealt ? "card3" : undefined}>
+      <div className={areCardsDealt ? "card3" : "no-card"}>
+        <img className="back-face-card noselect" src={cardSVG}/>
       </div>
-      <Footer areCardsDealt={areCardsDealt} isCardReveal1={isCardReveal1} />
+      <Footer
+        areCardsDealt={areCardsDealt}
+        cardsRevealed={cardsRevealed}
+        cardsViewed={cardsViewed}
+        handleCardsViewed={handleCardsViewed}
+      />
     </>
   );
 }

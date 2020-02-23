@@ -1,6 +1,13 @@
 .card1.animate--dealing.reveal {
   animation: card-flip 2.5s 0s 1 cubic-bezier(.45,.05,.55,.95) forwards;
-  transform: translate(-85%, -50%) translateZ(1000px) rotateY(0deg) scale(0.26);
+
+  &:hover {
+    filter: brightness(100%);
+  }
+}
+
+.card1.animate--dealing.reveal {
+  animation: card-flip 2.5s 0s 1 cubic-bezier(.45,.05,.55,.95) forwards;
 
   &:hover {
     filter: brightness(100%);
@@ -40,10 +47,11 @@
 
 .card1-reveal {
   animation: card-reveal 2.5s 0s 1 cubic-bezier(.45,.05,.55,.95) forwards;
-  border-color: $grey-light;
+  border-color: $light-grey;
   border-style: solid;
   border-radius: 10px;
   border-width: 30px 10px;
+  background-color: $brain-grey;
   cursor: default;
   height: 100%;
   position: absolute;
@@ -55,7 +63,41 @@
 
 @keyframes card-reveal {
   0% { opacity: 0; }
-  52% { opacity: 0; }
-  53% { opacity: 1; }
+  53% { opacity: 0; }
+  53.1% { opacity: 1; }
   100% { opacity: 1; }
+}
+
+@mixin viewed-cards($name, $offset) {
+  animation: #{$name} 2.5s 0s 1 cubic-bezier(.47,0,.74,.71) forwards;
+
+  @keyframes #{$name} {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateZ(1000px) rotateY(180deg) scale(1);
+    }
+    15% {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateZ(1000px) rotateY(180deg) scale(1.05);
+    }
+    85% {
+      opacity: 1;
+      transform: translate(#{$offset}, -50%) translateZ(1000px) rotateY(180deg) scale(0.22);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(#{$offset}, -50%) translateZ(1000px) rotateY(180deg) scale(0.26);
+    }
+  }
+}
+
+.card1--viewed {
+  @include card(30, 0);
+  @include viewed-cards(card1, -85%)
+}
+
+.video-wrapper-card {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
 }

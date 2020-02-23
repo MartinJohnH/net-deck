@@ -1,15 +1,29 @@
-import React from "react"
+import React, { useState } from "react"
 
-const Footer = ({ areCardsDealt, isCardReveal1 }) => {
+const Footer = ({ areCardsDealt, cardsRevealed, cardsViewed, handleCardsViewed }) => {
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  function handleNextClick() {
+    handleCardsViewed();
+  }
+
+  function handleControlClick() {
+    setIsPlaying(!isPlaying);
+  }
+
   return (
     <footer className="footer">
-      {(areCardsDealt && !isCardReveal1) ? (
+      {(
+        areCardsDealt && cardsRevealed === 0) ? (
           <span className="instruction">tap first card to reveal</span>
       ) : (
-        isCardReveal1 &&
+        cardsRevealed !== cardsViewed &&
         <div className="card-UI">
-          <span className="play noselect"><span></span></span>
-          <span className="next noselect">next</span>
+          <span className={isPlaying ? "play" : "play recording"} onClick={handleControlClick}>
+
+            <span className={isPlaying ? "record" : "recording"}/>
+          </span>
+          <span className="next noselect" onClick={handleNextClick}>next</span>
         </div>
       )}
     </footer>

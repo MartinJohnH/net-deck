@@ -23,7 +23,7 @@
   .instruction {
     @include footer-info();
     animation: fade-in-text .3s 3.5s 1 ease-in forwards;
-    color: $grey-light;
+    color: $grey;
     transform: translateY(100%);
   }
 
@@ -32,34 +32,73 @@
     cursor: pointer;
     display: inline-block;
     opacity: 0;
-    transform: translateY(25%);
+    transform: translateY(50%);
     padding: 25px;
+    position: relative;
+
+    @media (hover: hover) {
+      &:hover span {
+        border-color: $light-grey;
+      }
+    }
+
+    &:before {
+      border-color: $grey;
+      border-style: solid;
+      border-width: 2px;
+      border-radius: 100%;
+      content: "";
+      height: 32px;
+      left: 15px;
+      opacity: 1;
+      position: absolute;
+      top: 16.75px;
+      width: 32px;
+    }
+
+    &.recording:before {
+      border-color: $red;
+    }
 
     span {
       background: transparent;
-      border-color: transparent transparent transparent $grey;
-      border-style: double;
-      border-width: 0 0 0 12px;
+      border-color: $grey;
+      border-style: solid;
+      border-width: 0 4px 0 4px;
       box-sizing: border-box;
       cursor: pointer;
-      display: block;
+      display: inline-block;
       height: 15px;
-      transition: 100ms all ease-in-out;
-      width: 0;
+      transition: 250ms all ease-in-out;
+      transform: scale(1);
+      transform-origin: center;
+      width: 12px;
 
       &.paused {
-        border-style: solid;
+        border-color: transparent transparent transparent $light-grey;
         border-width: 7px 0 7px 12px;
       }
 
-      @media (hover: hover) {
-        &:hover {
-          border-color: transparent transparent transparent $grey-light;
-        }
+      &.record-button {
+        border-style: solid;
+        border-width: 0 7.5px 0 7.5px;
+        border-color: $grey;
+        border-radius: 10px;
+        margin-left: -1.5px;
+        transform: scale(1.5);
+        transform-origin: center;
+
+      }
+
+      &.recording {
+        border-style: solid;
+        border-width: 0 7.5px 0 7.5px;
+        border-color: $red;
+        border-radius: 2px;
+        margin-left: -1.5px;
       }
     }
   }
-
 
   .next {
     @include footer-info();
@@ -68,12 +107,12 @@
     cursor: pointer;
     display: inline-block;
     padding: 25px;
-    transform: translateY(10%);
+    transform: translateY(35%);
     transition: color .3s ease-in-out;
 
     @media (hover: hover) {
       &:hover {
-        color: $grey-light;
+        color: $light-grey;
         transition: color .3s ease-in-out;
       }
     }
@@ -88,5 +127,16 @@
   to {
     opacity: 1;
     transform: translateY(10%);
+  }
+}
+
+@keyframes scale-up {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }

@@ -1,5 +1,5 @@
 .intro-title {
-  color: $grey-light;
+  color: $light-grey;
   display: flex;
   justify-content: center;
   left: 50%;
@@ -13,6 +13,7 @@
   span {
     display: inline-block;
     font-family: 'Darker Grotesque', sans-serif;
+    font-style: italic;
     font-size: 2rem;
     position: relative;
     height: 100%;
@@ -80,7 +81,7 @@
   }
   to {
     opacity: 0;
-    margin-left: -60px;
+    margin-left: -56px;
   }
 }
 
@@ -92,8 +93,8 @@
   }
   to {
     opacity: 0;
-    margin-left: -30px;
-    padding-right: 0;
+    margin-left: -28px;
+    padding-right: 4px;
   }
 }
 
@@ -105,7 +106,7 @@
   }
   to {
     opacity: 0;
-    margin-left: -42px;
-    padding-right: 0;
+    margin-left: -38px;
+    padding-right: 4px;
   }
 }
