@@ -1,16 +1,25 @@
 import PropTypes from "prop-types"
-import React ,{ useState } from "react"
+import React, { useRef, useState } from "react"
+import clickSoundUI from "../assets/sounds/click.mp3"
 
 const Header = ({ siteTitle }) => {
   const [showInfoPage, setShowInfoPage] = useState(false);
+  const audioClick = useRef(null);
+
+  function handleTitleClick() {
+    audioClick.current.play();
+  }
+
 
   function handleInfoClick() {
+    audioClick.current.play();
     setShowInfoPage(!showInfoPage);
   }
 
   return (
     <header className="header">
-      <a href="/">
+      <audio ref={audioClick} src={clickSoundUI} controls={false} autoPlay={false} preload="auto"/>
+      <a href="/" onClick={handleTitleClick}>
         <h1 className="header--title">{siteTitle}</h1>
       </a>
       <div className="info-button noselect" onClick={handleInfoClick}>

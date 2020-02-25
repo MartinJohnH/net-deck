@@ -15,12 +15,12 @@ const Deck = ({ dealCards, areCardsDealt }) => {
     setCardRevealed(cardsRevealed + 1);
   }
 
-  function handleCardsViewed() {
+  function handleCardViewed() {
     setCardViews(cardsViewed + 1);
   }
 
   return (
-    <>
+    <div className="cards-wrapper">
       <Card1
         dealCards={handleDealCardsButtonClick}
         areCardsDealt={areCardsDealt}
@@ -38,9 +38,9 @@ const Deck = ({ dealCards, areCardsDealt }) => {
         areCardsDealt={areCardsDealt}
         cardsRevealed={cardsRevealed}
         cardsViewed={cardsViewed}
-        handleCardsViewed={handleCardsViewed}
+        handleCardViewed={handleCardViewed}
       />
-    </>
+    </div>
   );
 }
 

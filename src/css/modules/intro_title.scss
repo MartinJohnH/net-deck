@@ -1,12 +1,14 @@
 .intro-title {
+  animation: fade-in 0.25s 0.25s 1 ease-in forwards;
+  opacity: 0;
   color: $light-grey;
   display: flex;
   justify-content: center;
   left: 50%;
   overflow: hidden;
   position: absolute;
-  top: 50%;
-  transform: translate(-50%, -150%);
+  top: 44%;
+  transform: translate(-50%, -44%);
   width: 100%;
   z-index: 40;
 
@@ -14,29 +16,44 @@
     display: inline-block;
     font-family: 'Darker Grotesque', sans-serif;
     font-style: italic;
-    font-size: 2rem;
+    font-size: 32px;
     position: relative;
     height: 100%;
   }
 }
 
 .title-word {
-  animation: fade-in 0.25s 0.2s 1 ease-in forwards;
-  opacity: 0;
   overflow: hidden;
+  transform: translateX(0);
+
+  &.n {
+    animation: intro-animation1-1 0.5s 2s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+  }
+  &.e {
+    animation: intro-animation1-2 0.5s 2s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+  }
+  &.t {
+    animation: intro-animation1-3 0.5s 2s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+  }
+  &.deck {
+    animation: intro-animation1-4 0.5s 2s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+  }
+
 }
 
 .removed-title1 {
   animation: intro-animation1 0.5s 2s 1 cubic-bezier(.45,.05,.55,.95) forwards;
   margin-left: 0;
   opacity: 1;
-  padding-right: 10px;
+  padding-right: 5px;
+  transform: translateX(0);
 }
 .removed-title2 {
   animation: intro-animation2 0.5s 2s 1 cubic-bezier(.45,.05,.55,.95) forwards;
   margin-left: 0;
   opacity: 1;
-  padding-right: 10px;
+  padding-right: 5px;
+  transform: translateX(0);
 }
 
 .removed-title3 {
@@ -44,12 +61,15 @@
   margin-left: 0;
   opacity: 1;
   padding-right: 10px;
+  transform: translateX(0);
 }
 
 .abv-title {
   animation: colour-fade 0.45s 2s 1 cubic-bezier(.45,.05,.55,.95) forwards;
   background-color: black;
   display: inline-block;
+  opacity: 1;
+  padding-left: 5px;
   z-index: 40;
 }
 
@@ -74,39 +94,71 @@
   }
 }
 
-@keyframes intro-animation3 {
+@keyframes intro-animation1 {
   from {
     opacity: 1;
-    margin-left: 0;
+    transform: translateX(0);
   }
   to {
     opacity: 0;
-    margin-left: -56px;
+    transform: translateX(-38px);
   }
 }
 
 @keyframes intro-animation2 {
   from {
     opacity: 1;
-    margin-left: 0;
-    padding-right: 10px;
+    transform: translateX(0);
   }
   to {
     opacity: 0;
-    margin-left: -28px;
-    padding-right: 4px;
+    transform: translateX(-28px);
   }
 }
 
-@keyframes intro-animation1 {
+@keyframes intro-animation3 {
   from {
     opacity: 1;
-    margin-left: 0;
-    padding-right: 10px;
+    transform: translateX(0);
   }
   to {
     opacity: 0;
-    margin-left: -38px;
-    padding-right: 4px;
+    transform: translateX(-56px);
+  }
+}
+
+@keyframes intro-animation1-1 {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(65px);
+  }
+}
+
+@keyframes intro-animation1-2 {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(20px);
+  }
+}
+
+@keyframes intro-animation1-3 {
+   from {
+     transform: translateX(0);
+   }
+   to {
+     transform: translateX(-15px);
+   }
+ }
+
+@keyframes intro-animation1-4 {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-70px);
   }
 }
