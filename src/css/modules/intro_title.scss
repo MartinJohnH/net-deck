@@ -65,12 +65,22 @@
 }
 
 .abv-title {
-  animation: colour-fade 0.45s 2s 1 cubic-bezier(.45,.05,.55,.95) forwards;
-  background-color: black;
   display: inline-block;
-  opacity: 1;
   padding-left: 5px;
   z-index: 40;
+
+  &:before {
+    animation: colour-fade 0.45s 2s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+    background-color: black;
+    content: "";
+    height: 100%;
+    left: 0;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+  }
 }
 
 @keyframes fade-in {
@@ -84,13 +94,13 @@
 
 @keyframes colour-fade {
   0% {
-    background-color: black;
+    opacity: 1;
   }
   60% {
-    background-color: black;
+    opacity: 1;
   }
   100% {
-    background-color: transparent;
+    opacity: 0;
   }
 }
 
