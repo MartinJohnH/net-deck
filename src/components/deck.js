@@ -29,10 +29,10 @@ const Deck = ({ dealCards, areCardsDealt }) => {
         cardsViewed={cardsViewed}
       />
       <div className={areCardsDealt ? "card2" : "no-card"}>
-        <img className="back-face-card noselect" src={cardSVG}/>
+        <img className="back-face-card noselect" src={cardSVG} alt="second card backface"/>
       </div>
       <div className={areCardsDealt ? "card3" : "no-card"}>
-        <img className="back-face-card noselect" src={cardSVG}/>
+        <img className="back-face-card noselect" src={cardSVG} alt="third card backface"/>
       </div>
       <Footer
         areCardsDealt={areCardsDealt}

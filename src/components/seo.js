@@ -19,6 +19,7 @@ function SEO({ description, lang, meta }) {
             title
             description
             author
+            image
           }
         }
       }
@@ -50,6 +51,14 @@ function SEO({ description, lang, meta }) {
         {
           property: `og:type`,
           content: `website`,
+        },
+        {
+          property: `og:url`,
+          content: `https://www.netdeck.app`,
+        },
+        {
+          property: `og:image`,
+          content: site.siteMetadata.image,
         },
         {
           name: `twitter:card`,

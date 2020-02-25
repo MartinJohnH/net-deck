@@ -10,7 +10,7 @@
   left: 50%;
   padding-bottom: 4vh;
   @media all and (display-mode: fullscreen) {
-    padding-bottom: calc(1vh + env(safe-area-inset-bottom));
+    padding-bottom: calc(2vh + env(safe-area-inset-bottom));
   }
   position: absolute;
   text-align: center;

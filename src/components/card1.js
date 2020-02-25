@@ -55,7 +55,7 @@ const Card1 = ({ dealCards, areCardsDealt, cardsRevealed, handleCardReveal, card
       }
       onClick={areCardsDealt ? handleCardClick : undefined}
     >
-      <img className="back-face-card noselect" src={cardSVG} alt="card backface"/>
+      <img className="back-face-card noselect" src={cardSVG} alt="first card backface"/>
       <audio ref={audioClick} src={clickSoundUI} controls={false} autoPlay={false} preload="auto"/>
       <audio ref={audioShuffle} src={cardShuffle} controls={false} autoPlay={false} preload="auto"/>
       {(loadDealCardsButton && !areCardsDealt) &&

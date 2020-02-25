@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
     title: `NET Deck`,
-    description: ``,
+    description: `NET Deck is a modern twist on the traditional use of a Tarot deck while focusing on generative storytelling while sharing stories and moments with others.`,
     author: `Martin-John Hearty & Jonathan Ganz`,
+    image: '/open_graph_logo.png',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -18,7 +19,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `NET Deck`,
+        name: `New Era Tarot Deck`,
         short_name: `NET Deck`,
         start_url: `/`,
         background_color: `#000000`,
