@@ -4,6 +4,7 @@ module.exports = {
     description: `NET Deck is a modern twist on the traditional use of a Tarot deck while focusing on generative storytelling while sharing stories and moments with others.`,
     author: `Martin-John Hearty & Jonathan Ganz`,
     image: '/open_graph_logo.png',
+    siteUrl: 'https://www.netdeck.app',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -28,6 +29,7 @@ module.exports = {
         icon: `src/assets/net-logo.png`, // This path is relative to the root of the site.
       },
     },
+    'gatsby-plugin-robots-txt',
     //`gatsby-plugin-offline`,
     `gatsby-plugin-sass`,
     {
