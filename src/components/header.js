@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import React, { useRef, useState } from "react"
 import clickSoundUI from "../assets/sounds/click.mp3"
 
-const Header = ({ siteTitle }) => {
+const Header = ({ siteTitle, cardsRevealed, cardsViewed}) => {
   const [showInfoPage, setShowInfoPage] = useState(false);
   const audioClick = useRef(null);
 
@@ -10,24 +10,27 @@ const Header = ({ siteTitle }) => {
     audioClick.current.play();
   }
 
-
   function handleInfoClick() {
     audioClick.current.play();
     setShowInfoPage(!showInfoPage);
   }
-
   return (
     <header className="header">
       <audio ref={audioClick} src={clickSoundUI} controls={false} autoPlay={false} preload="auto"/>
       <a href="/" onClick={handleTitleClick}>
         <h1 className="header--title">{siteTitle}</h1>
       </a>
-      <div className="info-button noselect" onClick={handleInfoClick}>
-        {!showInfoPage ? (
-          <span>i</span>
-        ):(
-          <span className="cancel"><span>x</span></span>
-        )}
+      <div className="info-wrapper">
+        {cardsRevealed !== cardsViewed &&
+          <span className="instruction">card info</span>
+        }
+        <div className="info-button noselect" onClick={handleInfoClick}>
+          {!showInfoPage ? (
+            <span>i</span>
+          ):(
+            <span className="cancel"><span>x</span></span>
+          )}
+        </div>
       </div>
       {showInfoPage &&
         <div className="info-popup">

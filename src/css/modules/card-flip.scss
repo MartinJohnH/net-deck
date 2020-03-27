@@ -1,39 +1,85 @@
 .card1.animate--dealing.reveal {
   animation: card-flip 2.5s 0s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+  opacity: 1;
+  z-index: 3;
 
-  &:hover {
-    filter: brightness(100%);
+  @media (hover: hover) {
+    &:hover {
+      filter: brightness(100%);
+    }
   }
 }
 
-.card1.animate--dealing.reveal {
-  animation: card-flip 2.5s 0s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+.card2.reveal {
+  animation: card-flip2 2.5s 0s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+  opacity: 1;
+  z-index: 4;
 
-  &:hover {
-    filter: brightness(100%);
+  @media (hover: hover) {
+    &:hover {
+      filter: brightness(100%);
+    }
+  }
+}
+
+.card3.reveal {
+  animation: card-flip3 2.5s 0s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+  opacity: 1;
+  z-index: 5;
+
+  @media (hover: hover) {
+    &:hover {
+      filter: brightness(100%);
+    }
   }
 }
 
 @keyframes card-flip {
   0% {
-    opacity: 1;
-    transform: translate(-85%, -50%) translateZ(1000px) rotateY(0deg) scale(0.26);
+    transform: translate(-85%, -50%) translateZ(100px) rotateY(0deg) scale(0.26);
   }
   15% {
-    opacity: 1;
-    transform: translate(-85%, -50%) translateZ(1000px) rotateY(0deg) scale(0.2);
+    transform: translate(-85%, -50%) translateZ(100px) rotateY(0deg) scale(0.2);
   }
   90% {
-    opacity: 1;
-    transform: translate(-50%, -50%) translateZ(1000px) rotateY(180deg) scale(1.05);
+    transform: translate(-50%, -50%) translateZ(100px) rotateY(180deg) scale(1.05);
   }
   100% {
-    opacity: 1;
-    transform: translate(-50%, -50%) translateZ(1000px) rotateY(180deg) scale(1);
+    transform: translate(-50%, -50%) translateZ(100px) rotateY(180deg) scale(1);
   }
 }
 
-.card1-reveal {
+@keyframes card-flip2 {
+  0% {
+    transform: translate(-50%, -50%) translateZ(200px) rotateY(0deg) scale(0.26);
+  }
+  15% {
+    transform: translate(-50%, -50%) translateZ(200px) rotateY(0deg) scale(0.2);
+  }
+  90% {
+    transform: translate(-50%, -50%) translateZ(200px) rotateY(180deg) scale(1.05);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateZ(200px) rotateY(180deg) scale(1);
+  }
+}
+
+@keyframes card-flip3 {
+  0% {
+    transform: translate(-15%, -50%) translateZ(222px) rotateY(0deg) scale(0.26);
+  }
+  15% {
+    transform: translate(-15%, -50%) translateZ(222px) rotateY(0deg) scale(0.2);
+  }
+  90% {
+    transform: translate(-50%, -50%) translateZ(222px) rotateY(180deg) scale(1.05);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateZ(222px) rotateY(180deg) scale(1);
+  }
+}
+
+.card--front-face{
   animation: card-reveal 2.5s 0s 1 cubic-bezier(.45,.05,.55,.95) forwards;
   background-color: $brain-grey;
   border-color: $light-grey;
@@ -45,7 +91,7 @@
   position: absolute;
   transform: rotateY(180deg) translate3d(0, 0, 0);
   width: 100%;
-  z-index: 1000;
+  z-index: 250;
 }
 
 @keyframes card-reveal {
@@ -61,25 +107,98 @@
   @keyframes #{$name} {
     0% {
       opacity: 1;
-      transform: translate(-50%, -50%) translateZ(1000px) rotateY(180deg) scale(1);
+      transform: translate(-50%, -50%) translateZ(10px) rotateY(180deg) scale(1);
     }
     15% {
       opacity: 1;
-      transform: translate(-50%, -50%) translateZ(1000px) rotateY(180deg) scale(1.05);
+      transform: translate(-50%, -50%) translateZ(10px) rotateY(180deg) scale(1.05);
     }
     85% {
       opacity: 1;
-      transform: translate(#{$offset}, -50%) translateZ(1000px) rotateY(180deg) scale(0.22);
+      transform: translate(#{$offset}, -50%) translateZ(10px) rotateY(180deg) scale(0.22);
     }
     100% {
       opacity: 1;
-      transform: translate(#{$offset}, -50%) translateZ(1000px) rotateY(180deg) scale(0.26);
+      transform: translate(#{$offset}, -50%) translateZ(10px) rotateY(180deg) scale(0.26);
+    }
+  }
+}
+
+@mixin selected-cards($name, $offset) {
+  animation: #{$name} 2.5s 0s 1 cubic-bezier(.47,0,.74,.71) forwards;
+
+  @keyframes #{$name} {
+    0% {
+      opacity: 1;
+      transform: translate(#{$offset}, -50%) translateZ(10px) rotateY(180deg) scale(0.26);
+    }
+    15% {
+      opacity: 1;
+      transform: translate(#{$offset}, -50%) translateZ(10px) rotateY(180deg) scale(0.22);
+    }
+    85% {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateZ(10px) rotateY(180deg) scale(1.05);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateZ(10px) rotateY(180deg) scale(1);
     }
   }
 }
 
 .card1--viewed {
-  @include card(30, 0);
-  @include viewed-cards(card1, -85%)
+  @include card(3, 1);
+  @include viewed-cards(card1-viewed, -85%);
 }
 
+.card2--viewed {
+  @include card(4, 1);
+  @include viewed-cards(card2-viewed, -50%);
+}
+
+.card3--viewed {
+  @include card(5, 1);
+  @include viewed-cards(card3-viewed, -15%);
+}
+
+.card1--selected {
+  @include card(10, 1);
+  @include selected-cards(card1-selected, -85%);
+}
+
+.card2--selected {
+  @include card(10, 1);
+  @include selected-cards(card2-selected, -50%);
+}
+
+.card3--selected {
+  @include card(10, 1);
+  @include selected-cards(card3-selected, -15%);
+}
+
+.card-selection {
+  animation: pulse 2s 4s infinite  ease-out;
+  border-radius: 15px;
+  height: 100%;
+  width: 100%;
+}
+
+.card-selection2 {
+  animation: pulse 2s 2.5s infinite  ease-out;
+  border-radius: 15px;
+  height: 100%;
+  width: 100%;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(228, 228, 228, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 30px rgba(228, 228, 228, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(228, 228, 228, 0);
+  }
+}

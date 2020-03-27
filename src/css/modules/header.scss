@@ -33,6 +33,19 @@
     //}
   }
 
+  .info-wrapper {
+    display: flex;
+  }
+
+  .instruction {
+    animation: fade-in .3s 2.5s 1 ease-in forwards;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-size: 1rem;
+    color: $grey;
+    margin-right: -25px;
+    opacity: 0;
+  }
+
   .info-button {
     cursor: pointer;
     position: relative;
@@ -82,9 +95,10 @@
   position: absolute;
   padding: 1.5rem;
   top: 50%;
-  transform: translate(-50%, 5%) scaleY(0) ;
+  transform: translate(-50%, 5%) scaleY(0);
   transform-origin: top;
   width: 88vw;
+  z-index: 300;
 
   h1, h2, h3, p {
     color: $light-grey;

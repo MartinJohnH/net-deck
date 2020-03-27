@@ -24,7 +24,7 @@ module.exports = {
         short_name: `NET Deck`,
         start_url: `/`,
         background_color: `#000000`,
-        theme_color: `#ADADAD`,
+        theme_color: `#16161d`,
         display: `fullscreen`,
         icon: `src/assets/net-logo.png`, // This path is relative to the root of the site.
       },

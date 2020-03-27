@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react"
 import clickSoundUI from "../assets/sounds/click.mp3"
 
-const Footer = ({ areCardsDealt, cardsRevealed, cardsViewed, handleCardViewed }) => {
+const Footer = ({ areCardsDealt, cardsRevealed, cardsViewed, handleCardViewed, cardSelected }) => {
   const [isPlaying, setIsPlaying] = useState(true);
   const audioClick = useRef(null);
 
@@ -15,20 +15,32 @@ const Footer = ({ areCardsDealt, cardsRevealed, cardsViewed, handleCardViewed })
     setIsPlaying(!isPlaying);
   }
 
+  function handleRecordClick() {
+    audioClick.current.play();
+    setIsPlaying(!isPlaying);
+  }
+
   return (
     <footer className="footer">
       <audio ref={audioClick} src={clickSoundUI} controls={false} autoPlay={false} preload="auto"/>
       {(
         areCardsDealt && cardsRevealed === 0) ? (
           <span className="instruction">tap first card to reveal</span>
-      ) : (
-        cardsRevealed !== cardsViewed &&
+      ) : cardsViewed === 3 && cardSelected=== 0 ? (
+        <span className="instruction">select card to record your story</span>
+      ) : cardsRevealed !== cardsViewed ? (
         <div className="card-UI">
           <span className={isPlaying ? "play" : "play"} onClick={handleControlClick}>
-
             <span className={isPlaying ? "" : "paused"}/>
           </span>
           <span className="next noselect" onClick={handleNextClick}>next</span>
+        </div>
+      ) : cardSelected !== 0 && (
+        <div className="card-UI recording">
+          <span className="next recording noselect">start recording</span>
+          <span className={isPlaying ? "play record-button" : "play record-button"} onClick={handleRecordClick}>
+            <span className={isPlaying ? "record-button" : "recording"}/>
+          </span>
         </div>
       )}
     </footer>

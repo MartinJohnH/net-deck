@@ -17,8 +17,7 @@ const IndexPage = () => {
   return (
     <div className="main-wrapper">
       <SEO />
-      <Header />
-      <Background />
+      <Background areCardsDealt={areCardsDealt}/>
       <Title areCardsDealt={areCardsDealt} />
       <Deck areCardsDealt={areCardsDealt} dealCards={cardsDealt} />
     </div>

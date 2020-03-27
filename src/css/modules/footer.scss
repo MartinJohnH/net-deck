@@ -21,11 +21,15 @@
     align-items: flex-start;
     display: flex;
     justify-content: space-between;
+
+    &.recording {
+      justify-content: flex-end;
+    }
   }
 
   .instruction {
     @include footer-info();
-    animation: fade-in-text .3s 3.5s 1 ease-in forwards;
+    animation: fade-in-text .3s 3s 1 ease-in forwards;
     color: $grey;
     transform: translateY(100%);
   }
@@ -45,22 +49,20 @@
       }
     }
 
-    &:before {
-      //border-color: $grey;
-      //border-style: solid;
-      //border-width: 2px;
-      //border-radius: 100%;
-      content: "";
-      height: 32px;
-      left: 15px;
-      opacity: 1;
-      position: absolute;
-      top: 16.75px;
-      width: 32px;
-    }
-
-    &.recording:before {
-      border-color: $red;
+    &.record-button {
+      &:before {
+        border-color: $grey;
+        border-style: solid;
+        border-width: 2px;
+        border-radius: 100%;
+        content: "";
+        height: 30px;
+        left: 14.65px;
+        opacity: 1;
+        position: absolute;
+        top: 13.5px;
+        width: 30px;
+      }
     }
 
     span {
@@ -84,21 +86,25 @@
 
       &.record-button {
         border-style: solid;
-        border-width: 0 7.5px 0 7.5px;
+        border-width: 6px;
         border-color: $grey;
         border-radius: 10px;
         margin-left: -1.5px;
         transform: scale(1.5);
         transform-origin: center;
-
+        height: 10px;
+        width: 10px;
       }
 
       &.recording {
         border-style: solid;
-        border-width: 0 7.5px 0 7.5px;
-        border-color: $red;
+        border-width: 6px;
+        border-color: $grey;
         border-radius: 2px;
         margin-left: -1.5px;
+        height: 10px;
+        transform: scale(1.1);
+        width: 10px;
       }
     }
   }
@@ -112,6 +118,10 @@
     padding: 25px;
     transform: translateY(35%);
     transition: color .3s ease-in-out;
+
+    &.recording {
+      margin-right: -30px;
+    }
 
     @media (hover: hover) {
       &:hover {
