@@ -3,18 +3,23 @@ var express = require("express")
 var app = express()
 var db = require("./database.js")
 
-// Server port
-const HTTP_PORT = process.env.PORT || 8000;
+const gatsbyExpress = require('gatsby-plugin-express');
 
-// Start server
+// serve static files before gatsbyExpress
+app.use(express.static('public/'));
+
+// Server port
+const HTTP_PORT = process.env.PORT || 8080;
+
+//Start server
 app.listen(HTTP_PORT, () => {
   console.log("Server running on port %PORT%".replace("%PORT%",HTTP_PORT))
 });
 
 // Root endpoint
-app.get("/", (req, res, next) => {
-  res.json({"message":"Ok"})
-});
+// app.get("/", (req, res, next) => {
+//   res.json({"message":"Ok"})
+// });
 
 // api endpoint
 app.get("/api", (req, res, next) => {

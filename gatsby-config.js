@@ -6,6 +6,10 @@ module.exports = {
     image: '/open_graph_logo.png',
     siteUrl: 'https://new-era-tarot-deck.herokuapp.com/',
   },
+  proxy: {
+    prefix: "/api/stories",
+    url: "https://new-era-tarot-deck.herokuapp.com/",
+  },
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
@@ -48,6 +52,12 @@ module.exports = {
     //     }
     //   }
     // },
+    {
+      resolve: 'gatsby-plugin-express',
+      options: {
+        output: 'config/gatsby-express.json',
+      }
+    },
     'gatsby-plugin-robots-txt',
     //`gatsby-plugin-offline`,
     `gatsby-plugin-sass`,

@@ -11,6 +11,7 @@ const IndexPage = () => {
   const [areCardsDealt, setAreCardsDealt] = useState(false);
 
   function getCardsFromApi() {
+    console.log("getCardsFromApi");
     fetch("https://new-era-tarot-deck.herokuapp.com/api/stories/2")
       .then((response) => response.json())
       .then((json) => {
@@ -32,7 +33,6 @@ const IndexPage = () => {
   useEffect(() => {
     getCardsFromApi();
   });
-
   return (
     <div className="main-wrapper">
       <SEO />
