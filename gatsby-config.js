@@ -1,14 +1,10 @@
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
-
 module.exports = {
   siteMetadata: {
     title: `NET Deck`,
     description: `NET Deck is a modern twist on the traditional use of a Tarot deck while focusing on generative storytelling while sharing stories and moments with others.`,
     author: `Martin-John Hearty & Jonathan Ganz`,
     image: '/open_graph_logo.png',
-    siteUrl: 'https://www.netdeck.app',
+    siteUrl: 'https://new-era-tarot-deck.herokuapp.com/',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

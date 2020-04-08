@@ -11,14 +11,14 @@ const IndexPage = () => {
   const [areCardsDealt, setAreCardsDealt] = useState(false);
 
   function getCardsFromApi() {
-    // fetch("http://localhost:8080/api/stories/2")
-    //   .then((response) => response.json())
-    //   .then((json) => {
-    //     console.log(json);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
+    fetch("https://new-era-tarot-deck.herokuapp.com/api/stories/2")
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   function cardsDealt() {
