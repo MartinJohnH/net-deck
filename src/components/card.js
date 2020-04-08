@@ -2,7 +2,7 @@ import React, { useRef } from "react"
 import cardSVG from "../assets/back-card.svg"
 import cardReveal from "../assets/sounds/card-reveal.mp3"
 
-const Card = ({ areCardsDealt, handleCardReveal, cardsRevealed, cardsViewed, handleCardSelection, cardSelected }) => {
+const Card = ({ areCardsDealt, handleCardReveal, cardsRevealed, cardsViewed, handleCardSelection, cardSelected, cardSent }) => {
   const audioReveal = useRef(null);
 
   function handleCardClick() {
@@ -10,6 +10,7 @@ const Card = ({ areCardsDealt, handleCardReveal, cardsRevealed, cardsViewed, han
       audioReveal.current.play();
       handleCardReveal();
     } else if (cardsViewed === 3 && cardsRevealed === 3) {
+      audioReveal.current.play();
       handleCardSelection(1);
     }
   }
@@ -23,16 +24,20 @@ const Card = ({ areCardsDealt, handleCardReveal, cardsRevealed, cardsViewed, han
           "card1 animate--dealing"
         ) : cardsViewed === 0 ? (
           "card1 animate--dealing reveal"
-        ) : cardSelected === 1 ? (
+        ) : cardSelected === 1 && !cardSent ? (
           "card1--selected"
+        ) : cardSelected === 1 && cardSent ? (
+          "card1--sent top"
+        ) : cardSent ? (
+          "card1--sent"
         ) : (
-          "card1--viewed"
+        "card1--viewed"
         )
       }
       onClick={areCardsDealt ? handleCardClick : undefined}
     >
-      <div className={areCardsDealt && cardsRevealed === 0 ? "card-selection" : undefined}>
-        <audio ref={audioReveal} src={cardReveal} controls={false} autoPlay={false} preload="auto"/>
+      <audio ref={audioReveal} src={cardReveal} controls={false} autoPlay={false} preload="auto"/>
+      <div className={areCardsDealt && cardsRevealed === 0 ? "card-selection" : ""}>
         <img className="back-face-card noselect" src={cardSVG} alt="second card backface"/>
         {cardsRevealed >= 1 &&
         <div className="card--front-face">
@@ -44,7 +49,7 @@ const Card = ({ areCardsDealt, handleCardReveal, cardsRevealed, cardsViewed, han
           <h2 className="card-name">THE&nbsp;LOVERS</h2>
         </div>
         }
-        <div className="card-filter"/>
+        <div id="card-filter-1" className="card-filter"/>
       </div>
     </div>
   );

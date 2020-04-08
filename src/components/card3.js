@@ -2,7 +2,7 @@ import React, { useRef } from "react"
 import cardSVG from "../assets/back-card.svg"
 import cardReveal from "../assets/sounds/card-reveal.mp3"
 
-const Card3 = ({ areCardsDealt, handleCardReveal, cardsRevealed, cardsViewed, handleCardSelection, cardSelected }) => {
+const Card3 = ({ areCardsDealt, handleCardReveal, cardsRevealed, cardsViewed, handleCardSelection, cardSelected, cardSent }) => {
   const audioReveal = useRef(null);
 
   function handleCardClick() {
@@ -10,6 +10,7 @@ const Card3 = ({ areCardsDealt, handleCardReveal, cardsRevealed, cardsViewed, ha
       audioReveal.current.play();
       handleCardReveal();
     }else if (cardsViewed === 3 && cardsRevealed === 3) {
+      audioReveal.current.play();
       handleCardSelection(3);
     }
   }
@@ -21,10 +22,14 @@ const Card3 = ({ areCardsDealt, handleCardReveal, cardsRevealed, cardsViewed, ha
           "no-card"
         ) : cardsRevealed === 3 && cardsViewed === 2 ? (
           "card3 reveal"
-        ) : cardsViewed >= 3 && cardSelected !== 3 ? (
+        ) : cardsViewed >= 3 && cardSelected !== 3 && !cardSent ? (
           "card3--viewed"
-        ) : cardSelected === 3 ? (
+        ) : cardSelected === 3 && !cardSent ? (
           "card3--selected"
+        ) : cardSelected === 3 && cardSent ? (
+          "card3--sent top"
+        ) : cardSent ? (
+          "card3--sent"
         ) : (
           "card3"
         )
@@ -44,7 +49,7 @@ const Card3 = ({ areCardsDealt, handleCardReveal, cardsRevealed, cardsViewed, ha
           <h2 className="card-name">THE&nbsp;HIEROPHANT</h2>
         </div>
         }
-        <div className="card-filter"/>
+        <div id="card-filter-3" className="card-filter"/>
       </div>
     </div>
   );

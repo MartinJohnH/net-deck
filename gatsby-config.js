@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `NET Deck`,
@@ -29,6 +33,25 @@ module.exports = {
         icon: `src/assets/net-logo.png`, // This path is relative to the root of the site.
       },
     },
+    // {
+    //   resolve: `gatsby-source-sql`,
+    //   options: {
+    //     typeName: 'NetDeck',
+    //     fieldName: 'stories',
+    //     dbEngine: {
+    //       client: 'sqlite3',
+    //       connection: {
+    //         filename: process.env.DATAFILE,
+    //       },
+    //       useNullAsDefault: true
+    //     },
+    //     queryChain: function(x) {
+    //       return x
+    //         .select("st")
+    //         .from("users")
+    //     }
+    //   }
+    // },
     'gatsby-plugin-robots-txt',
     //`gatsby-plugin-offline`,
     `gatsby-plugin-sass`,
