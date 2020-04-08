@@ -1,8 +1,12 @@
 {
   "name": "new-era-tarot-deck",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
+  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "engines": {
+    "node": "8.11.1"
+  },
+  "main": "server.js",
   "author": "Martin-Johnarty <martinjohn.hearty@gmail.com> (https:/martinjohnhearty.com)",
   "contributors": [
     "Jonathan Ganz <diabolo.reborn@gmail.com>"
