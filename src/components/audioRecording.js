@@ -1,18 +1,20 @@
 import React, { useRef, useState } from "react"
+
 import AudioRecorder from 'audio-recorder-polyfill'
 import cardReveal from "../assets/sounds/card-reveal.mp3"
 
 const AudioRecording = () => {
   const audioSource = useRef(null);
 
-  window.MediaRecorder = AudioRecorder;
+  if(typeof window !== `undefined`){
+    window.MediaRecorder = AudioRecorder;
 
-  if (MediaRecorder.notSupported) {
-    console.log("not supported");
+    if (MediaRecorder.notSupported) {
+      console.log("not supported");
+    }
   }
 
   let recorder;
-
 
   function recording() {
     document.getElementById("audioID").src = "";
