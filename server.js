@@ -4,7 +4,7 @@ var app = express()
 var db = require("./database.js")
 
 // Server port
-var HTTP_PORT = 8080
+const HTTP_PORT = process.env.PORT || 5000;
 
 // Start server
 app.listen(HTTP_PORT, () => {
