@@ -1,44 +1,44 @@
 import React, { useRef, useState } from "react"
 
-import AudioRecorder from 'audio-recorder-polyfill'
+//import AudioRecorder from 'audio-recorder-polyfill'
 import cardReveal from "../assets/sounds/card-reveal.mp3"
 
 const AudioRecording = () => {
   const audioSource = useRef(null);
 
   if(typeof window !== `undefined`){
-    window.MediaRecorder = AudioRecorder;
+    //window.MediaRecorder = AudioRecorder;
 
-    if (MediaRecorder.notSupported) {
-      console.log("not supported");
-    }
+    // if (MediaRecorder.notSupported) {
+    //   console.log("not supported");
+    // }
   }
 
   let recorder;
 
   function recording() {
-    document.getElementById("audioID").src = "";
-    //recorder = null;
-    navigator.mediaDevices.getUserMedia({audio: true}).
-    then((stream) => {
-      recorder = new MediaRecorder(stream)
-      recorder.addEventListener('dataavailable', e => {
-        document.getElementById("audioID").src = URL.createObjectURL(e.data)
-      })
-      recorder.start()
-
-    }).catch(function(err) {
-      console.log(err);
-    });
+    // document.getElementById("audioID").src = "";
+    // //recorder = null;
+    // navigator.mediaDevices.getUserMedia({audio: true}).
+    // then((stream) => {
+    //   recorder = new MediaRecorder(stream)
+    //   recorder.addEventListener('dataavailable', e => {
+    //     document.getElementById("audioID").src = URL.createObjectURL(e.data)
+    //   })
+    //   recorder.start()
+    //
+    // }).catch(function(err) {
+    //   console.log(err);
+    // });
   }
 
   function stop() {
-    console.log("recorder stopped");
-    recorder.stop();
-    recorder.stream.getTracks().forEach(i => i.stop())
+    // console.log("recorder stopped");
+    // recorder.stop();
+    // recorder.stream.getTracks().forEach(i => i.stop())
   }
   function play() {
-    document.getElementById("audioID").play();
+    //document.getElementById("audioID").play();
   }
 
   return(
