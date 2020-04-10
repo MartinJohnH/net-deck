@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import "../css/base/layout.css"
 
 import SEO from "../components/seo"
@@ -10,18 +10,6 @@ import Background from "../components/background"
 const IndexPage = () => {
   const [areCardsDealt, setAreCardsDealt] = useState(false);
 
-  function getCardsFromApi() {
-    console.log("getCardsFromApi");
-    fetch("https://new-era-tarot-deck.herokuapp.com/api/stories/2")
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-
   function cardsDealt() {
     setAreCardsDealt(true);
   }
@@ -30,9 +18,6 @@ const IndexPage = () => {
     setAreCardsDealt(false);
   }
 
-  useEffect(() => {
-    getCardsFromApi();
-  });
   return (
     <div className="main-wrapper">
       <SEO />

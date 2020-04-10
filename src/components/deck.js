@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import Footer from "./footer"
+import cardInfo from './cardInfo';
 
 import cardSVG from "../assets/back-card.svg"
 import Card from "./card"
@@ -26,9 +27,28 @@ const Deck = ({ dealCards, areCardsDealt, reDealCards }) => {
   const [cardSent, setCardSent] = useState(false);
   const [showInfoPage, setShowInfoPage] = useState(false);
 
+  const [dataCard1, setDataCard1] = useState(0);
+  const [dataCard2, setDataCard2] = useState(0);
+  const [dataCard3, setDataCard3] = useState(0);
 
-  // const [isCard1Placed, setIsCard1Placed] = useState(false);
- // console.log(cardsRevealed + " : " + cardsViewed);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  function getCardsFromApi() {
+    fetch("http://localhost:8080/api/stories")
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json.data);
+        setIsLoaded(true);
+        setDataCard1(json.data[0].cardNum);
+        setDataCard2(json.data[1].cardNum);
+        setDataCard3(json.data[2].cardNum);
+      },
+        (error) => {
+          console.log(error);
+          setIsLoaded(true);
+        }
+      )
+  }
 
   function loadingButton() {
     setTimeout(function() {
@@ -37,6 +57,7 @@ const Deck = ({ dealCards, areCardsDealt, reDealCards }) => {
   }
 
   useEffect(() => {
+    getCardsFromApi();
     loadingButton();
   }, [])
 
@@ -73,6 +94,7 @@ const Deck = ({ dealCards, areCardsDealt, reDealCards }) => {
     audioSwish.current.play();
     setCardSent(true);
     setTimeout(function() {
+      getCardsFromApi();
       setCardSent(true);
       setCardRevealed(0);
       setCardViewed(0);
@@ -85,6 +107,8 @@ const Deck = ({ dealCards, areCardsDealt, reDealCards }) => {
   }
 
   return (
+    <>
+    {isLoaded &&
     <div className="cards-wrapper">
       <Header
         cardsViewed={cardsViewed}
@@ -92,6 +116,12 @@ const Deck = ({ dealCards, areCardsDealt, reDealCards }) => {
         cardSelected={cardSelected}
         showInfoPage={showInfoPage}
         handleInfoPage={handleInfoPage}
+        cardInfo1={cardInfo[dataCard1 % 22].info}
+        cardInfo2={cardInfo[dataCard2 % 22].info}
+        cardInfo3={cardInfo[dataCard3 % 22].info}
+        cardIndex1={dataCard1}
+        cardIndex2={dataCard2}
+        cardIndex3={dataCard3}
       />
       <Card
         areCardsDealt={areCardsDealt}
@@ -101,6 +131,8 @@ const Deck = ({ dealCards, areCardsDealt, reDealCards }) => {
         handleCardSelection={handleCardSelection}
         cardSelected={cardSelected}
         cardSent={cardSent}
+        cardInfo={cardInfo[dataCard1 % 22].info}
+        cardIndex={dataCard1}
       />
       {(loadButton && !areCardsDealt) &&
       <div className="button--deal-cards noselect" onClick={handleDealCardsButtonClick}>
@@ -118,6 +150,8 @@ const Deck = ({ dealCards, areCardsDealt, reDealCards }) => {
         handleCardSelection={handleCardSelection}
         cardSelected={cardSelected}
         cardSent={cardSent}
+        cardInfo={cardInfo[dataCard2 % 22].info}
+        cardIndex={dataCard2}
       />
 
       <Card3
@@ -128,6 +162,8 @@ const Deck = ({ dealCards, areCardsDealt, reDealCards }) => {
         handleCardSelection={handleCardSelection}
         cardSelected={cardSelected}
         cardSent={cardSent}
+        cardInfo={cardInfo[dataCard3 % 22].info}
+        cardIndex={dataCard3}
       />
 
       <Footer
@@ -139,6 +175,8 @@ const Deck = ({ dealCards, areCardsDealt, reDealCards }) => {
         finishedRecording={finishedRecording}
       />
     </div>
+    }
+    </>
   );
 }
 

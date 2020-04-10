@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import React, { useRef, useState } from "react"
 import clickSoundUI from "../assets/sounds/click.mp3"
 
-const Header = ({ siteTitle, cardsRevealed, cardsViewed, cardSelected, showInfoPage, handleInfoPage}) => {
+const Header = ({ siteTitle, cardsRevealed, cardsViewed, cardSelected, showInfoPage, handleInfoPage, cardInfo1, cardInfo2, cardInfo3, cardIndex1, cardIndex2, cardIndex3}) => {
   const audioClick = useRef(null);
 
   function handleTitleClick() {
@@ -37,24 +37,30 @@ const Header = ({ siteTitle, cardsRevealed, cardsViewed, cardSelected, showInfoP
       <div className={showInfoPage ? "info_inner-wrapper" : "info_inner-wrapper closed"}>
         {(cardsRevealed !== cardsViewed && cardsRevealed === 1) ?
           <>
-            <h1>VI - THE LOVERS</h1>
-            <p>
-              Upright - The Lovers represent strong partnerships and a union of parts, but also the duality involved in the parts of a whole.
-            </p>
+            <h1>{cardInfo1[1].number} - {cardInfo1[2].name}</h1>
+            {cardIndex1 < 22 ?
+              <p>{cardInfo1[3].upright}</p>
+              :
+              <p>{cardInfo1[4].reversed}</p>
+            }
           </>
         : (cardsRevealed !== cardsViewed && cardsRevealed === 2) ?
           <>
-            <h1>VIII - STRENGTH</h1>
-            <p>
-              Upright - Strength represents a inner strength and bravery. It also denotes a strong focus and sense of compassion.
-            </p>
+            <h1>{cardInfo2[1].number} - {cardInfo2[2].name}</h1>
+            {cardIndex2 < 22 ?
+              <p>{cardInfo2[3].upright}</p>
+              :
+              <p>{cardInfo2[4].reversed}</p>
+            }
           </>
         :(cardsRevealed !== cardsViewed && cardsRevealed === 3) ?
           <>
-            <h1>V - The HEIROPHANT</h1>
-            <p>
-              Upright - The Heirophant represents a guiding rule of ethics and morality. It can also represent conformity and strong tradition.
-            </p>
+            <h1>{cardInfo3[1].number} - {cardInfo3[2].name}</h1>
+            {cardIndex3 < 22 ?
+              <p>{cardInfo3[3].upright}</p>
+              :
+              <p>{cardInfo3[4].reversed}</p>
+            }
           </>
         :
           <>

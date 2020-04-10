@@ -10,8 +10,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
     console.log('Connected to the SQLite database.')
     db.run(`CREATE TABLE stories (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            card_num int,
-            story_rec text
+            cardNum int,
+            storyRec text
             )`,
       (err) => {
         if (err) {
@@ -19,14 +19,14 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
           //console.log('Database already created')
         }else{
           // Table just created, creating some rows
-          var insert = 'INSERT INTO stories (card_num, story_rec) VALUES (?,?)'
-          for (let i = 0; i < 22; ++i) {
+          var insert = 'INSERT INTO stories (cardNum, storyRec) VALUES (?,?)'
+          for (let i = 0; i < 44; ++i) {
             db.run(insert, [i, "blob1.mp3"])
           }
-          for (let i = 0; i < 22; ++i) {
+          for (let i = 0; i < 44; ++i) {
             db.run(insert, [i, "blob2.mp3"])
           }
-          for (let i = 0; i < 22; ++i) {
+          for (let i = 0; i < 44; ++i) {
             db.run(insert, [i, "blob3.mp3"])
           }
         }

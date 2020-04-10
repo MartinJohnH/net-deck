@@ -8,7 +8,7 @@ module.exports = {
   },
   proxy: {
     prefix: "/api/stories",
-    url: "https://new-era-tarot-deck.herokuapp.com/",
+    url: "http://localhost:8080",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

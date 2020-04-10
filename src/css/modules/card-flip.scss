@@ -1,5 +1,31 @@
+@mixin card-flip-mixin($name,  $x-offset, $z-offset, $scale){
+  animation: #{$name} 2.5s 0s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+
+  @keyframes #{$name} {
+    0% {
+      opacity: 1;
+      transform: translate(#{$x-offset}, -50%) translateZ(#{$z-offset}) rotateY(0deg) scale(#{$scale + 0.06});
+    }
+    15% {
+      opacity: 1;
+      transform: translate(#{$x-offset}, -50%) translateZ(#{$z-offset}) rotateY(0deg) scale(#{$scale});
+    }
+    90% {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateZ(#{$z-offset}) rotateY(180deg) scale(1.05);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateZ(#{$z-offset}) rotateY(180deg) scale(1);
+    }
+  }
+}
+
 .card1.animate--dealing.reveal {
-  animation: card-flip 2.5s 0s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+  @include card-flip-mixin(card-flip1, -85%, 100px, 0.2);
+  @media only screen and (min-width: $lg-viewport) {
+    @include card-flip-mixin(card-flip1-desktop, -115%, 100px, 0.5);
+  }
   opacity: 1;
   z-index: 3;
 
@@ -11,7 +37,10 @@
 }
 
 .card2.reveal {
-  animation: card-flip2 2.5s 0s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+  @include card-flip-mixin(card-flip2, -50%, 200px, 0.2);
+  @media only screen and (min-width: $lg-viewport) {
+    @include card-flip-mixin(card-flip2-desktop, -50%, 200px, 0.5);
+  }
   opacity: 1;
   z-index: 4;
 
@@ -23,7 +52,10 @@
 }
 
 .card3.reveal {
-  animation: card-flip3 2.5s 0s 1 cubic-bezier(.45,.05,.55,.95) forwards;
+  @include card-flip-mixin(card-flip3, -15%, 222px, 0.2);
+  @media only screen and (min-width: $lg-viewport) {
+    @include card-flip-mixin(card-flip3-desktop, 15%, 100px, 0.5);
+  }
   opacity: 1;
   z-index: 5;
 
@@ -34,62 +66,13 @@
   }
 }
 
-@keyframes card-flip {
-  0% {
-    opacity: 1;
-    transform: translate(-85%, -50%) translateZ(100px) rotateY(0deg) scale(0.26);
-  }
-  15% {
-    opacity: 1;
-    transform: translate(-85%, -50%) translateZ(100px) rotateY(0deg) scale(0.2);
-  }
-  90% {
-    opacity: 1;
-    transform: translate(-50%, -50%) translateZ(100px) rotateY(180deg) scale(1.05);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%) translateZ(100px) rotateY(180deg) scale(1);
-  }
-}
-
-@keyframes card-flip2 {
-  0% {
-    transform: translate(-50%, -50%) translateZ(200px) rotateY(0deg) scale(0.26);
-  }
-  15% {
-    transform: translate(-50%, -50%) translateZ(200px) rotateY(0deg) scale(0.2);
-  }
-  90% {
-    transform: translate(-50%, -50%) translateZ(200px) rotateY(180deg) scale(1.05);
-  }
-  100% {
-    transform: translate(-50%, -50%) translateZ(200px) rotateY(180deg) scale(1);
-  }
-}
-
-@keyframes card-flip3 {
-  0% {
-    transform: translate(-15%, -50%) translateZ(222px) rotateY(0deg) scale(0.26);
-  }
-  15% {
-    transform: translate(-15%, -50%) translateZ(222px) rotateY(0deg) scale(0.2);
-  }
-  90% {
-    transform: translate(-50%, -50%) translateZ(222px) rotateY(180deg) scale(1.05);
-  }
-  100% {
-    transform: translate(-50%, -50%) translateZ(222px) rotateY(180deg) scale(1);
-  }
-}
-
 .card--front-face{
   animation: card-reveal 2.5s 0s 1 cubic-bezier(.45,.05,.55,.95) forwards;
   background-color: $brain-grey;
-  border-color: $light-grey;
+  border-color: $grey;
   border-style: solid;
   border-radius: 15px;
-  border-width: 25px 10px;
+  border-width: 35px 15px;
   cursor: default;
   height: 100%;
   position: absolute;
@@ -105,40 +88,41 @@
   100% { opacity: 1; }
 }
 
-@mixin viewed-cards($name, $offset) {
+@mixin viewed-cards($name, $offset, $scale) {
   animation: #{$name} 2.5s 0s 1 cubic-bezier(.47,0,.74,.71) forwards;
 
   @keyframes #{$name} {
-    0% {
-      opacity: 1;
-      transform: translate(-50%, -50%) translateZ(10px) rotateY(180deg) scale(1);
-    }
-    15% {
-      opacity: 1;
-      transform: translate(-50%, -50%) translateZ(10px) rotateY(180deg) scale(1.05);
-    }
-    85% {
-      opacity: 1;
-      transform: translate(#{$offset}, -50%) translateZ(10px) rotateY(180deg) scale(0.22);
-    }
-    100% {
-      opacity: 1;
-      transform: translate(#{$offset}, -50%) translateZ(10px) rotateY(180deg) scale(0.26);
-    }
-  }
+     0% {
+       opacity: 1;
+       transform: translate(-50%, -50%) translateZ(10px) rotateY(180deg) scale(1);
+     }
+     15% {
+       opacity: 1;
+       transform: translate(-50%, -50%) translateZ(10px) rotateY(180deg) scale(1.05);
+     }
+     85% {
+       opacity: 1;
+       transform: translate(#{$offset}, -50%) translateZ(10px) rotateY(180deg) scale(#{$scale + 0.02});
+     }
+     100% {
+       opacity: 1;
+       transform: translate(#{$offset}, -50%) translateZ(10px) rotateY(180deg) scale(#{$scale + 0.06});
+     }
+   }
+
 }
 
-@mixin selected-cards($name, $offset) {
+@mixin selected-cards($name, $offset, $scale) {
   animation: #{$name} 2.5s 0s 1 cubic-bezier(.47,0,.74,.71) forwards;
 
   @keyframes #{$name} {
     0% {
       opacity: 1;
-      transform: translate(#{$offset}, -50%) translateZ(300px) rotateY(180deg) scale(0.26);
+      transform: translate(#{$offset}, -50%) translateZ(300px) rotateY(180deg) scale(#{$scale + 0.06});
     }
     15% {
       opacity: 1;
-      transform: translate(#{$offset}, -50%) translateZ(300px) rotateY(180deg) scale(0.22);
+      transform: translate(#{$offset}, -50%) translateZ(300px) rotateY(180deg) scale(#{$scale + 0.02});
     }
     85% {
       opacity: 1;
@@ -172,32 +156,50 @@
 
 .card1--viewed {
   @include card(3, 1);
-  @include viewed-cards(card1-viewed, -85%);
+  @include viewed-cards(card1-viewed, -85%, 0.2);
+  @media only screen and (min-width: $lg-viewport) {
+    @include viewed-cards(card1-viewed-desktop, -115%, 0.5);
+  }
 }
 
 .card2--viewed {
   @include card(4, 1);
-  @include viewed-cards(card2-viewed, -50%);
+  @include viewed-cards(card2-viewed, -50%, 0.2);
+  @media only screen and (min-width: $lg-viewport) {
+    @include viewed-cards(card2-viewed-desktop, -50%, 0.5);
+  }
 }
 
 .card3--viewed {
   @include card(5, 1);
-  @include viewed-cards(card3-viewed, -15%);
+  @include viewed-cards(card3-viewed, -15%, 0.2);
+  @media only screen and (min-width: $lg-viewport) {
+    @include viewed-cards(card3-viewed-desktop, 15%, 0.5);
+  }
 }
 
 .card1--selected {
   @include card(30, 1);
-  @include selected-cards(card1-selected, -85%);
+  @include selected-cards(card1-selected, -85%, 0.2);
+  @media only screen and (min-width: $lg-viewport) {
+    @include selected-cards(card1-selected-desktop, -115%, 0.5);
+  }
 }
 
 .card2--selected {
   @include card(30, 1);
-  @include selected-cards(card2-selected, -50%);
+  @include selected-cards(card2-selected, -50%, 0.2);
+  @media only screen and (min-width: $lg-viewport) {
+    @include selected-cards(card2-selected-desktop, -50%, 0.5);
+  }
 }
 
 .card3--selected {
   @include card(30, 1);
-  @include selected-cards(card3-selected, -15%);
+  @include selected-cards(card3-selected, -15%, 0.2);
+  @media only screen and (min-width: $lg-viewport) {
+    @include selected-cards(card3-selected-desktop, 15%, 0.5);
+  }
 }
 
 .card1--sent {
