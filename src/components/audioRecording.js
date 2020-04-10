@@ -17,19 +17,19 @@ const AudioRecording = () => {
   let recorder;
 
   function recording() {
-    // document.getElementById("audioID").src = "";
-    // //recorder = null;
-    // navigator.mediaDevices.getUserMedia({audio: true}).
-    // then((stream) => {
-    //   recorder = new MediaRecorder(stream)
-    //   recorder.addEventListener('dataavailable', e => {
-    //     document.getElementById("audioID").src = URL.createObjectURL(e.data)
-    //   })
-    //   recorder.start()
-    //
-    // }).catch(function(err) {
-    //   console.log(err);
-    // });
+    document.getElementById("audioID").src = "";
+    //recorder = null;
+    navigator.mediaDevices.getUserMedia({audio: true}).
+    then((stream) => {
+      recorder = new MediaRecorder(stream)
+      recorder.addEventListener('dataavailable', e => {
+        document.getElementById("audioID").src = URL.createObjectURL(e.data)
+      })
+      recorder.start()
+
+    }).catch(function(err) {
+      console.log(err);
+    });
   }
 
   function stop() {

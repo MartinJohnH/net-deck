@@ -4,11 +4,11 @@ module.exports = {
     description: `NET Deck is a modern twist on the traditional use of a Tarot deck while focusing on generative storytelling while sharing stories and moments with others.`,
     author: `Martin-John Hearty & Jonathan Ganz`,
     image: '/open_graph_logo.png',
-    siteUrl: 'https://new-era-tarot-deck.herokuapp.com/',
+    siteUrl: 'https://www.netdeck.app/',
   },
   proxy: {
     prefix: "/api/stories",
-    url: "http://localhost:8080",
+    url: "https://www.netdeck.app/",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
