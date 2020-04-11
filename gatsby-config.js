@@ -8,7 +8,7 @@ module.exports = {
   },
   proxy: {
     prefix: "/api/stories",
-    url: "http://localhost:8080",
+    url: "https://www.netdeck.app/",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

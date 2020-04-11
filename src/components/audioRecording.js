@@ -4,14 +4,15 @@ import React, { useEffect, useRef } from "react"
 //import Recorder from 'recorder-js';
 import Recorder from './recorder';
 
-let rec;
-let gumStream;
 
 const AudioRecording = () => {
   const audioSource = useRef(null);
 
   //const [rec, setRec] = useState(null);
   //const [gumStream, setGumStream] = useState(null);
+
+  let rec;
+  let gumStream;
 
   if(typeof window !== `undefined`){
     URL = window.URL || window.webkitURL;
@@ -45,7 +46,6 @@ const AudioRecording = () => {
 
   function stopRecording() {
     console.log("Recording stop");
-    console.log(rec);
     //tell the recorder to stop the recording
     rec && rec.stop();
     //stop microphone access
@@ -55,6 +55,7 @@ const AudioRecording = () => {
   }
 
   function createDownloadLink(blob) {
+    console.log("createDownloadLink");
     var url = URL.createObjectURL(blob);
     var au = document.createElement('audioID');
     console.log(url);
