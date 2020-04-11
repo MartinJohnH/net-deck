@@ -137,7 +137,7 @@ const Footer = ({ areCardsDealt, cardsRevealed, cardsViewed, handleCardViewed, c
           </div>
         </div>
       )}
-      {/*<AudioRecording />*/}
+      <AudioRecording />
     </footer>
   );
 }

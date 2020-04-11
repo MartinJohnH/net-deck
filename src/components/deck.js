@@ -34,7 +34,7 @@ const Deck = ({ dealCards, areCardsDealt, reDealCards }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   function getCardsFromApi() {
-    fetch("https://www.netdeck.app/api/stories")
+    fetch("http://localhost:8080/api/stories")
       .then((response) => response.json())
       .then((json) => {
         console.log(json.data);
