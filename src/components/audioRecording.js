@@ -5,14 +5,12 @@ import React, { useEffect, useRef } from "react"
 import Recorder from './recorder';
 
 
+let rec;
+let gumStream;
+
 const AudioRecording = () => {
   const audioSource = useRef(null);
 
-  //const [rec, setRec] = useState(null);
-  //const [gumStream, setGumStream] = useState(null);
-
-  let rec;
-  let gumStream;
 
   if(typeof window !== `undefined`){
     URL = window.URL || window.webkitURL;
@@ -22,9 +20,6 @@ const AudioRecording = () => {
 
   }
 
-  useEffect(() => {
-
-  }, [])
 
   function startRecording() {
     let constraints = { audio: true, video:false }
@@ -56,8 +51,8 @@ const AudioRecording = () => {
 
   function createDownloadLink(blob) {
     console.log("createDownloadLink");
-    var url = URL.createObjectURL(blob);
-    var au = document.createElement('audioID');
+    let url = URL.createObjectURL(blob);
+    let au = document.getElementById('audioID');
     console.log(url);
     au.controls = true;
     au.src = url;
@@ -72,7 +67,7 @@ const AudioRecording = () => {
 
   return (
     <>
-      <audio id="audioID" src="../assets/cards/card_0.mp4" controls={true} autoPlay={false} preload="auto"/>
+      <audio id="audioID" src="" controls={true} autoPlay={false} preload="auto"/>
       <button onClick={startRecording}>Record</button>
       <button onClick={stopRecording}>Stop</button>
       <button onClick={playRecording}>Play</button>
