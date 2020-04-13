@@ -8,7 +8,7 @@ const upload = multer();
 const fs = require('fs');
 const path = require('path');
 const archiver = require('archiver');
-const lame = require("lame");
+const Lame = require("node-lame").Lame;
 
 // serve static files before gatsbyExpress
 app.use(express.static('public/'));
@@ -123,7 +123,7 @@ app.post('/api/upload', upload.single('soundBlob'), function (req, res, next) {
     let newFileName = req.file.originalname.substring(0, req.file.originalname.length - 4) + '.mp3'
 
     try {
-      const encoder = new lame.Encoder({
+      const encoder = new Lame({
         output:  __dirname + '/public/uploads/' + newFileName,
         bitrate: 192,
       }).setBuffer(Buffer.from(new Uint8Array(req.file.buffer)));
