@@ -14,6 +14,10 @@
   width: 285px;
   z-index: $card_z-index;
 
+  &.hide {
+    display: none;
+  }
+
   @media only screen and (min-width: 360px) {
     width: 325px;
   }

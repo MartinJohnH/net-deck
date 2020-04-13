@@ -33,7 +33,7 @@ const Header = ({ siteTitle, cardsRevealed, cardsViewed, cardSelected, showInfoP
           </div>
         </div>
       </header>
-    <div className={showInfoPage ? (cardsRevealed !== cardsViewed && cardsRevealed <= 3) ? "info-popup card-info": "info-popup" : (cardsRevealed !== cardsViewed && cardsRevealed <= 3) ? "info-popup card-info closed": "info-popup closed"}>
+    <div className={showInfoPage ? ((cardsRevealed !== cardsViewed && cardsRevealed <= 3) || cardSelected !== 0) ? "info-popup card-info": "info-popup" : ((cardsRevealed !== cardsViewed && cardsRevealed <= 3) || cardSelected !== 0) ? "info-popup card-info closed": "info-popup closed"}>
       <div className={showInfoPage ? "info_inner-wrapper" : "info_inner-wrapper closed"}>
         {(cardsRevealed !== cardsViewed && cardsRevealed === 1) ?
           <>
@@ -60,6 +60,37 @@ const Header = ({ siteTitle, cardsRevealed, cardsViewed, cardSelected, showInfoP
               <p>{cardInfo3[3].upright}</p>
               :
               <p>{cardInfo3[4].reversed}</p>
+            }
+          </>
+        :(cardSelected !== 0) ?
+          <>
+            {cardSelected === 1 ?
+              <>
+                <h1>{cardInfo1[1].number} - {cardInfo1[2].name}</h1>
+                {cardIndex1 < 22 ?
+                  <p>{cardInfo1[3].upright}</p>
+                  :
+                  <p>{cardInfo1[4].reversed}</p>
+                }
+              </>
+            : cardSelected === 2 ?
+              <>
+                <h1>{cardInfo2[1].number} - {cardInfo2[2].name}</h1>
+                {cardIndex2 < 22 ?
+                  <p>{cardInfo2[3].upright}</p>
+                  :
+                  <p>{cardInfo2[4].reversed}</p>
+                }
+              </>
+            : cardSelected === 3 &&
+              <>
+                <h1>{cardInfo3[1].number} - {cardInfo3[2].name}</h1>
+                {cardIndex3 < 22 ?
+                  <p>{cardInfo3[3].upright}</p>
+                  :
+                  <p>{cardInfo3[4].reversed}</p>
+                }
+              </>
             }
           </>
         :

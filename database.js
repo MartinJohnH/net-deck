@@ -1,5 +1,7 @@
 var sqlite3 = require('sqlite3').verbose()
 const DBSOURCE = "db/db.sqlite"
+const fs = require('fs');
+const path = require('path');
 
 let db = new sqlite3.Database(DBSOURCE, (err) => {
   if (err) {
@@ -18,16 +20,20 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
           // Table already created
           //console.log('Database already created')
         }else{
+          fs.readdir(__dirname + '/public/uploads/', (err, files) => {
+            if (err) throw err;
+
+            for (const file of files) {
+              fs.unlink(path.join(__dirname + '/public/uploads/', file), err => {
+                if (err) throw err;
+              });
+            }
+          });
           // Table just created, creating some rows
+          //insert initial recordings into the database
           var insert = 'INSERT INTO stories (cardNum, storyRec) VALUES (?,?)'
           for (let i = 0; i < 44; ++i) {
             db.run(insert, [i, "blob1.mp3"])
-          }
-          for (let i = 0; i < 44; ++i) {
-            db.run(insert, [i, "blob2.mp3"])
-          }
-          for (let i = 0; i < 44; ++i) {
-            db.run(insert, [i, "blob3.mp3"])
           }
         }
       });

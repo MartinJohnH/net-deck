@@ -145,6 +145,17 @@
     }
   }
 
+  .re-record-text {
+    @include footer-info();
+    animation: fade-in .3s 0s 1 ease-in forwards;
+    color: $grey;
+    cursor: pointer;
+    margin-left: -5px;
+    height: 35px;
+    transform: translateY(0px);
+  }
+
+
   .next {
     @include footer-info();
     animation: fade-in .3s 2s 1 ease-in forwards;
@@ -210,12 +221,12 @@
 
 .wave-on {
   opacity: 1;
-  transition: .3s ease-in;
+  display: block;
 }
 
 .wave-off {
   opacity: 0;
-  transition: .3s ease-out;
+  display: none;
 }
 
 @keyframes wave-slide {
@@ -238,6 +249,7 @@
     animation-delay: 0s;
     margin-left: -20px;
     transform:translateX(15px) translateY(0%);
+    height: 30px;
   }
 }
 

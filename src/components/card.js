@@ -33,6 +33,7 @@ const Card = ({ areCardsDealt, handleCardReveal, cardsRevealed, cardsViewed, han
         "card1--viewed"
         )
       }
+      id="card-id-1"
       onClick={areCardsDealt ? handleCardClick : undefined}
     >
       <audio ref={audioReveal} src={cardReveal} controls={false} autoPlay={false} preload="auto"/>

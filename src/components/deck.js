@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react"
 import Footer from "./footer"
 import cardInfo from './cardInfo';
 
-import cardSVG from "../assets/back-card.svg"
 import Card from "./card"
 import Card2 from "./card2"
 import Card3 from "./card3"
@@ -19,6 +18,10 @@ const Deck = ({ dealCards, areCardsDealt, reDealCards }) => {
   const audioShuffle = useRef(null);
   const audioSwish = useRef(null);
 
+  const audioStory1 = useRef(null);
+  const audioStory2 = useRef(null);
+  const audioStory3 = useRef(null);
+
   const [loadButton, setLoadButton] = useState(false);
 
   const [cardsRevealed, setCardRevealed] = useState(0);
@@ -31,17 +34,27 @@ const Deck = ({ dealCards, areCardsDealt, reDealCards }) => {
   const [dataCard2, setDataCard2] = useState(0);
   const [dataCard3, setDataCard3] = useState(0);
 
+  const [storyRec1, setStoryRec1] = useState(null);
+  const [storyRec2, setStoryRec2] = useState(null);
+  const [storyRec3, setStoryRec3] = useState(null);
+
+  const [cardSelectedNum, setCardSelectedNum] = useState(0);
+  const [isAudioPlaying, setIsAudioPlaying] = useState(true);
+
+
   const [isLoaded, setIsLoaded] = useState(false);
 
   function getCardsFromApi() {
     fetch("https://www.netdeck.app/api/stories")
       .then((response) => response.json())
       .then((json) => {
-        console.log(json.data);
         setIsLoaded(true);
         setDataCard1(json.data[0].cardNum);
         setDataCard2(json.data[1].cardNum);
         setDataCard3(json.data[2].cardNum);
+        setStoryRec1(json.data[0].storyRec);
+        setStoryRec2(json.data[1].storyRec);
+        setStoryRec3(json.data[2].storyRec);
       },
         (error) => {
           console.log(error);
@@ -72,13 +85,31 @@ const Deck = ({ dealCards, areCardsDealt, reDealCards }) => {
   }
 
   function handleCardReveal() {
-    audioClick.current.play();
+    setIsAudioPlaying(true);
+    setTimeout(function() {
+      if (cardsRevealed === 0) {
+        audioStory1.current.play();
+      } else if (cardsRevealed === 1) {
+        audioStory2.current.play();
+      } else if (cardsRevealed === 2) {
+        audioStory3.current.play();
+      }
+    }, 2500);
+    //audioClick.current.play();
     setCardRevealed(cardsRevealed + 1);
   }
 
   function handleCardViewed() {
-    setCardViewed(cardsViewed + 1);
     setShowInfoPage(false);
+    if(showInfoPage){
+      setTimeout(function() {
+        handleAudioReset(cardsViewed + 1);
+        setCardViewed(cardsViewed + 1);
+      }, 800);
+    } else {
+      handleAudioReset(cardsViewed + 1);
+      setCardViewed(cardsViewed + 1);
+    }
   }
 
   function handleInfoPage() {
@@ -88,9 +119,17 @@ const Deck = ({ dealCards, areCardsDealt, reDealCards }) => {
   function handleCardSelection(cardNumber) {
     audioClick.current.play();
     setCardSelected(cardNumber);
+    if (cardNumber === 1) {
+      setCardSelectedNum(dataCard1);
+    } else if (cardNumber === 2) {
+      setCardSelectedNum(dataCard2);
+    } else if (cardNumber === 3) {
+      setCardSelectedNum(dataCard3);
+    }
   }
 
   function finishedRecording() {
+    setShowInfoPage(false);
     audioSwish.current.play();
     setCardSent(true);
     setTimeout(function() {
@@ -104,6 +143,51 @@ const Deck = ({ dealCards, areCardsDealt, reDealCards }) => {
       loadingButton();
       reDealCards();
     }, 2100);
+  }
+
+  function handlePauseAndPlayButton(isPlaying) {
+    if (cardsRevealed === 1) {
+      if (isPlaying) {
+        audioStory1.current.play();
+        setIsAudioPlaying(false);
+      }
+      if (isAudioPlaying){
+        audioStory1.current.pause();
+        setIsAudioPlaying(false);
+      }
+    } else if (cardsRevealed === 2) {
+      if (isPlaying) {
+        audioStory2.current.play();
+        setIsAudioPlaying(true);
+      }
+      if (isAudioPlaying) {
+        audioStory2.current.pause();
+        setIsAudioPlaying(false);
+      }
+    } else if (cardsRevealed === 3) {
+      if (isPlaying) {
+        audioStory3.current.play();
+        setIsAudioPlaying(true);
+      }
+      if (isAudioPlaying) {
+        audioStory3.current.pause();
+        setIsAudioPlaying(false);
+      }
+    }
+  }
+
+  function handleAudioReset(cardNumber) {
+    setIsAudioPlaying(false);
+    if (cardNumber === 1) {
+      audioStory1.current.pause();
+      audioStory1.current.currentTime = 0;
+    } else if (cardNumber === 2) {
+      audioStory2.current.pause();
+      audioStory2.current.currentTime = 0;
+    } else if (cardNumber === 3) {
+      audioStory3.current.pause();
+      audioStory3.current.currentTime = 0;
+    }
   }
 
   return (
@@ -123,6 +207,10 @@ const Deck = ({ dealCards, areCardsDealt, reDealCards }) => {
         cardIndex2={dataCard2}
         cardIndex3={dataCard3}
       />
+      <audio ref={audioStory1} src={storyRec1} controls={false} onEnded={() => handleAudioReset(1)} autoPlay={false} preload="auto"/>
+      <audio ref={audioStory2} src={storyRec2} controls={false} onEnded={() => handleAudioReset(2)} autoPlay={false} preload="auto"/>
+      <audio ref={audioStory3} src={storyRec3} controls={false} onEnded={() => handleAudioReset(3)} autoPlay={false} preload="auto"/>
+
       <Card
         areCardsDealt={areCardsDealt}
         handleCardReveal={handleCardReveal}
@@ -173,6 +261,9 @@ const Deck = ({ dealCards, areCardsDealt, reDealCards }) => {
         handleCardViewed={handleCardViewed}
         cardSelected={cardSelected}
         finishedRecording={finishedRecording}
+        cardSelectedNum={cardSelectedNum}
+        handlePauseAndPlayButton={handlePauseAndPlayButton}
+        isAudioPlaying={isAudioPlaying}
       />
     </div>
     }

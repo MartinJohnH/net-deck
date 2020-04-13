@@ -34,6 +34,7 @@ const Card2 = ({ areCardsDealt, handleCardReveal, cardsRevealed, cardsViewed, ha
         "card2"
         )
       }
+      id="card-id-2"
       onClick={areCardsDealt ? handleCardClick : undefined}
     >
       <div className={areCardsDealt && cardsViewed === 1 && cardsRevealed !== 2 ? "card-selection2" : undefined}>

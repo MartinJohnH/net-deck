@@ -1,9 +1,12 @@
 // Create express app
-var express = require("express")
-var app = express()
-var db = require("./database.js")
+let express = require("express")
+let app = express()
+let db = require("./database.js")
 
-const gatsbyExpress = require('gatsby-plugin-express');
+const multer = require('multer');
+const upload = multer();
+const fs = require('fs');
+const archiver = require('archiver');
 
 // serve static files before gatsbyExpress
 app.use(express.static('public/'));
@@ -22,16 +25,45 @@ app.get("/api", (req, res, next) => {
   res.json({"message":"api endpoint"})
 });
 
+// api endpoint
+app.get("/api/download-stories", (req, res, next) => {
+  let output = fs.createWriteStream(__dirname + '/public/zipped/stories.zip');
+  let archive = archiver('zip');
+
+  output.on('close', function () {
+    console.log(archive.pointer() + ' total bytes');
+    console.log('archiver has been finalized and the output file descriptor has closed.');
+    const file = `${__dirname}/public/zipped/stories.zip`;
+    res.download(file);
+  });
+
+  archive.on('warning', function(err) {
+    if (err.code === 'ENOENT') {
+      // log warning
+    } else {
+      // throw error
+      res.status(400);
+      throw err;
+    }
+  });
+
+  archive.on('error', function(err){
+    res.status(400);
+    throw err;
+  });
+
+  archive.pipe(output);
+  archive.directory(__dirname + '/public/uploads/', 'stories');
+  archive.finalize();
+
+});
+
 function generateThreeUniqueNum() {
   let limit = 10,
-    amount = 3,
     lower_bound = 0,
     upper_bound = 22,
     unique_random_numbers = [];
 
-  if (amount > limit) limit = amount; //Infinite loop if you want more unique
-
-  // given range
   while (unique_random_numbers.length < limit) {
     let random_number = Math.floor(Math.random()*(upper_bound - lower_bound) + lower_bound);
     if (unique_random_numbers.indexOf(random_number) === -1) {
@@ -45,7 +77,6 @@ function generateThreeUniqueNum() {
       unique_random_numbers[i] += 22;
     }
   }
-
   return unique_random_numbers;
 }
 
@@ -53,7 +84,6 @@ function generateThreeUniqueNum() {
 app.get("/api/stories", (req, res, next) => {
 
   let cardNums = generateThreeUniqueNum();
-
   let cardIndex1 = cardNums[0];
   let cardIndex2 = cardNums[1];
   let cardIndex3 = cardNums[2];
@@ -80,6 +110,53 @@ app.get("/api/stories", (req, res, next) => {
     })
   });
 });
+
+app.post('/api/upload', upload.single('soundBlob'), function (req, res, next) {
+  const file = req.file;
+  if (!file) {
+    const error = new Error('Please upload file');
+    res.status(400);
+  } else {
+    let newFileName = req.file.originalname.substring(0, req.file.originalname.length - 4) + '.mp3'
+
+    try {
+      const Lame = require("node-lame").Lame;
+      const encoder = new Lame({
+        output:  __dirname + '/public/uploads/' + newFileName,
+        bitrate: 192,
+      }).setBuffer(Buffer.from(new Uint8Array(req.file.buffer)));
+
+      encoder
+        .encode()
+        .then(() => {
+          console.log('Successfully encoded');
+          if (fs.existsSync(__dirname + '/public/uploads/' + newFileName)) {
+
+            let sql = 'INSERT INTO stories (cardNum, storyRec) VALUES (?,?)';
+            //let params =[i, 'uploads/' + newFileName]
+            let params =[req.body.cardNum, 'uploads/' + newFileName];
+            db.run(sql, params, function (err, result) {
+              if (err){
+                res.status(400).json({"error": err.message})
+              }
+            });
+
+            res.json({
+              "message": "success",
+              "data": newFileName
+            })
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+    } catch(err) {
+      console.log(err)
+    }
+  }
+  //res.sendStatus(200);
+})
 
 // Default response for any other request
 app.use(function(req, res){
