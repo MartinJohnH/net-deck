@@ -6,10 +6,12 @@ let db = require("./database.js")
 const multer = require('multer');
 const upload = multer();
 const fs = require('fs');
+const path = require('path');
 const archiver = require('archiver');
 
 // serve static files before gatsbyExpress
 app.use(express.static('public/'));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Server port
 const HTTP_PORT = process.env.PORT || 8080;
