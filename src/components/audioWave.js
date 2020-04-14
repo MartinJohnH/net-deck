@@ -1,5 +1,4 @@
 import React from "react"
-import cardReveal from "../assets/sounds/card-reveal.mp3"
 
 const AudioWave = ({delay}) => {
   return(

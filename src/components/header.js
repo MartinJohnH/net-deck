@@ -1,6 +1,7 @@
 import PropTypes from "prop-types"
-import React, { useRef, useState } from "react"
+import React, { useRef } from "react"
 import clickSoundUI from "../assets/sounds/click.mp3"
+import { Link } from "gatsby"
 
 const Header = ({ siteTitle, cardsRevealed, cardsViewed, cardSelected, showInfoPage, handleInfoPage, cardInfo1, cardInfo2, cardInfo3, cardIndex1, cardIndex2, cardIndex3}) => {
   const audioClick = useRef(null);
@@ -102,10 +103,12 @@ const Header = ({ siteTitle, cardsRevealed, cardsViewed, cardSelected, showInfoP
             <p>
               Once all three cards and their meaning have been revealed you will be prompted to share what one of the cards meant to you. That story will then be added to the respective audio collection for that card. Over time a digital repertoire of stories will be created that encompasses a myriad of perspectives, lives and peoples,  which lends insight into not only what the card represents but also what it means to you.
             </p>
+            <Link className="creators-links" to="/cards">View card collection</Link>
             <h3 className="info-subtitle">Created by</h3>
             <h2 className="creators">Martin-John Hearty</h2>
             <a className="creators-links" href="https://martinjohnhearty.com/" target="_blank" rel="noopener noreferrer">martinjohnhearty.com</a>
             <h2 className="creators">Jonathan Ganz</h2>
+            <a className="creators-links" href=" https://hybrid.concordia.ca/J_GANZ/Portfolio/mainpage.html" target="_blank" rel="noopener noreferrer"> https://hybrid.concordia.ca/J_GANZ/Portfolio/mainpage.html</a>
           </>
         }
       </div>
