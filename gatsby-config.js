@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `NET Deck`,
-    description: `NET Deck is a modern twist on the traditional use of a Tarot deck while focusing on generative storytelling while sharing stories and moments with others.`,
+    description: `NET Deck is a modern twist on the traditional use of a Tarot deck, focusing on generative storytelling, while sharing stories and moments with others.`,
     author: `Martin-John Hearty & Jonathan Ganz`,
     image: '/open_graph_logo.png',
     siteUrl: 'https://www.netdeck.app/',

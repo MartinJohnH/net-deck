@@ -99,6 +99,11 @@
   width: calc(100% - 40px);
   z-index: 500;
 
+  @media all and (display-mode: fullscreen) {
+    height: calc(92% - 60px);
+    margin: 20px 0;
+  }
+
   opacity: 1;
   transform: translate(-50%, -48%) translateZ(500px) scaleY(1);
 
@@ -168,6 +173,10 @@
 
 .creators-links {
   color: $light-grey;
+  display: block;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-size: 18px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

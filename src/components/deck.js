@@ -149,7 +149,7 @@ const Deck = ({ dealCards, areCardsDealt, reDealCards }) => {
     if (cardsRevealed === 1) {
       if (isPlaying) {
         audioStory1.current.play();
-        setIsAudioPlaying(false);
+        setIsAudioPlaying(true);
       }
       if (isAudioPlaying){
         audioStory1.current.pause();

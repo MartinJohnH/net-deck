@@ -15,6 +15,8 @@ const Footer = ({ areCardsDealt, cardsRevealed, cardsViewed, handleCardViewed, c
   const [isRecording, setIsRecording] = useState(0);
   const [microphoneAccess, setMicrophoneAccess] = useState(false);
 
+  const newSoundRecording = new Audio();
+
   const audioClick = useRef(null);
   const audioRecord = useRef(null);
   const audioEndRecord = useRef(null);
@@ -43,6 +45,7 @@ const Footer = ({ areCardsDealt, cardsRevealed, cardsViewed, handleCardViewed, c
       rec.addEventListener('dataavailable', e => {
         blob = e.data;
       });
+      audioRecord.current.play();
       rec.addEventListener('start', function() {
         console.log("start recording");
         setMicrophoneAccess(true);
@@ -56,9 +59,10 @@ const Footer = ({ areCardsDealt, cardsRevealed, cardsViewed, handleCardViewed, c
         setIsAudioPlayBack(true);
         setMicrophoneAccess(false);
         const audioUrl = URL.createObjectURL(blob);
-        const player = new Audio(audioUrl);
-        player.play();
-        player.onended = function() {
+        //const player = new Audio(audioUrl);
+        newSoundRecording.src = audioUrl;
+        newSoundRecording.play();
+        newSoundRecording.onended = function() {
           setIsAudioPlayBack(false);
         };
       });
@@ -104,7 +108,6 @@ const Footer = ({ areCardsDealt, cardsRevealed, cardsViewed, handleCardViewed, c
   }
 
   function recordingState() {
-    audioRecord.current.play();
     document.body.style.backgroundColor = '#3E0000';
     if (cardSelected === 1) {
       document.getElementById("card-id-2").classList.add("hide");
@@ -159,6 +162,7 @@ const Footer = ({ areCardsDealt, cardsRevealed, cardsViewed, handleCardViewed, c
       }, 2100);
     } else {
       if(isRecording === 0) {
+        newSoundRecording.play();
         setIsRecording(isRecording + 1);
         startRecording();
       } else if (isRecording === 1) {
@@ -207,7 +211,7 @@ const Footer = ({ areCardsDealt, cardsRevealed, cardsViewed, handleCardViewed, c
                 <AudioWave delay={false}/>
               </div>
               {!isAudioPlayBack &&
-                <span className="re-record-text noselect" onClick={handleRerecordClick}>re-record</span>
+                <span className="re-record-text noselect" onClick={handleRerecordClick}>rerecord</span>
               }
             </div>
           }

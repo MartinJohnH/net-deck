@@ -1,7 +1,7 @@
 .card_page {
   overflow-y: auto;
   position: relative;
-
+  padding-top: env(safe-area-inset-top);
   .text-wrapper {
     margin: 20px 40px;
   }

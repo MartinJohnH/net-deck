@@ -16,7 +16,7 @@ const Cards = () => {
       <SEO title="cards" />
       <div className="text-wrapper">
         <h1>Card collection</h1>
-        <p>3D modelled and animated by Jonathan Ganz</p>
+        <p>Card design, 3D modelling and animation by Jonathan Ganz.</p>
       </div>
       <div className="card-spread">
         {cardInfo.map((card, index) =>

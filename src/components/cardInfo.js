@@ -171,7 +171,7 @@ const cards = [
       {id: 21},
       {number: "XXI"},
       {name: 'The World'},
-      {upright: 'Upright The World represent fulfillment and completion, or harmony in things.'},
+      {upright: 'Upright The World represents fulfillment and completion, or harmony in things.'},
       {reversed: 'Reversed The World represents a lack of closure or things left incomplete.'}
     ]
   }

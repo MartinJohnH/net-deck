@@ -33,7 +33,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
           //insert initial recordings into the database
           var insert = 'INSERT INTO stories (cardNum, storyRec) VALUES (?,?)'
           for (let i = 0; i < 44; ++i) {
-            db.run(insert, [i, "blob1.mp3"])
+            db.run(insert, [i, "uploads/audio_recording_inital_" + i + ".mp3"])
           }
         }
       });
