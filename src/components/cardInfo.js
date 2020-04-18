@@ -107,7 +107,7 @@ const cards = [
       {id: 13},
       {number: "XIII"},
       {name: 'Death'},
-      {upright: ' Upright: Upright The Fool represents innocence, free spirited wandering and new beginnings'},
+      {upright: ' Upright Death represents the end of cycles, the beginning of something new. It can also represent a change or metamorphosis in life.'},
       {reversed: 'Reversed Death represents a fear of change or holding on to past things.'}
     ]
   },

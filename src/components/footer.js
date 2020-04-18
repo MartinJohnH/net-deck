@@ -144,6 +144,7 @@ const Footer = ({ areCardsDealt, cardsRevealed, cardsViewed, handleCardViewed, c
   }
 
   function handleRerecordClick() {
+    newSoundRecording.pause();
     clearTimeout(recordingTimer);
     setIsRecording(isRecording - 1);
     setIsPlaying(false);
